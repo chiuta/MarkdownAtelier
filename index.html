@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <!--
   ============================================================================
   MarkdownAtelier
@@ -27,7 +28,6 @@
 /* Accesibilitate: inel de focus vizibil pentru navigare la tastatură. */
 :focus-visible{outline:2px solid #4a90d9;outline-offset:2px;border-radius:2px}
 </style>
-<meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; script-src 'self' 'unsafe-inline' blob:; connect-src 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MarkdownAtelier — atelier de scriere Markdown</title>
@@ -542,15 +542,15 @@ input[type=range]{accent-color:var(--accent);width:140px}
       </div>
       <div class="ed-wrap">
         <div id="lines">1</div>
-        <textarea id="editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" placeholder="# Începe să scrii…&#10;&#10;Scrie *Markdown* cu **preview live**, ecuații $E=mc^2$ și tabele.&#10;&#10;Apasă pe ? pentru ajutor."></textarea>
+        <textarea id="editor" aria-label="Editor Markdown" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" placeholder="# Începe să scrii…&#10;&#10;Scrie *Markdown* cu **preview live**, ecuații $E=mc^2$ și tabele.&#10;&#10;Apasă pe ? pentru ajutor."></textarea>
       </div>
       <div id="findbar">
         <div class="frow">
-          <input id="findInput" placeholder="Caută…">
+          <input id="findInput" aria-label="Caută" placeholder="Caută…">
           <span class="fcount" id="findCount">0/0</span>
         </div>
         <div class="frow">
-          <input id="replInput" placeholder="Înlocuiește cu…">
+          <input id="replInput" aria-label="Înlocuiește cu" placeholder="Înlocuiește cu…">
         </div>
         <div class="frow">
           <button class="fb" id="findPrev" title="Anterior">↑</button>
@@ -731,10 +731,15 @@ const I18N = {
 };
 let LANG="ro";
 const LOCALES={ro:"ro-RO",en:"en-US",fr:"fr-FR",it:"it-IT",es:"es-ES",pt:"pt-PT",de:"de-DE"};
+const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
 function localeOf(){return LOCALES[LANG]||"en-US";}
 function t(k){return (I18N[LANG][k]!==undefined?I18N[LANG][k]:(I18N.en[k]!==undefined?I18N.en[k]:(I18N.ro[k]||k)));}
 function applyI18n(){
-  document.querySelectorAll("[data-i]").forEach(el=>{const k=el.getAttribute("data-i");const v=t(k);if(v!==k)el.textContent=v;});
+  document.querySelectorAll("[data-i]").forEach(el=>{const k=el.getAttribute("data-i");const v=t(k);if(v===k)return;
+    if(!el.children.length){el.textContent=v;return;}
+    const f=el.firstChild; /* element cu copii (ex. <small>): actualizează doar primul nod text */
+    if(f&&f.nodeType===3)f.nodeValue=v;else el.insertBefore(document.createTextNode(v),f);
+  });
   document.querySelectorAll("[data-it]").forEach(el=>{const k=el.getAttribute("data-it");const v=t(k);if(v!==k)el.title=v;});
   document.querySelectorAll(".mtabs button").forEach(b=>{b.textContent=t(b.dataset.mt);});
   document.documentElement.lang=LANG;
@@ -745,7 +750,20 @@ function applyI18n(){
    =================================================================== */
 const Atelier = (()=>{
   let headings=[];           // {level,text,id}
-  let footnotes={};          // id -> html
+  let footnotes=Object.create(null);          // id -> html
+  let usedIds=Object.create(null);
+  function uniq(base){let id=base,n=0;while(usedIds[id]){n++;id=base+"-"+n;}usedIds[id]=1;return id;}
+  function expandTabs(md){
+    const ls=md.split("\n");let f=null;
+    for(let k=0;k<ls.length;k++){
+      const l=ls[k];
+      if(f){if(new RegExp("^\\s*"+f.m+"{"+f.n+",}\\s*$").test(l))f=null;continue;}
+      const o=l.match(/^(\s*)(`{3,}|~{3,})\s*([\w+-]*)\s*$/);
+      if(o){f={m:o[2][0]==="`"?"`":"~",n:o[2].length};continue;}
+      ls[k]=l.replace(/\t/g,"  ");
+    }
+    return ls.join("\n");
+  }
   let footnoteOrder=[];
   let autoTocNumbers=true;
   let emojiOn=true;
@@ -773,6 +791,7 @@ const Atelier = (()=>{
 
   function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function escAttr(s){return esc(s).replace(/"/g,"&quot;");}
+  function unesc(s){return s.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&");}
   function slug(s){
     return s.toLowerCase().trim()
       .replace(/[ăâ]/g,"a").replace(/î/g,"i").replace(/ș/g,"s").replace(/ț/g,"t")
@@ -789,18 +808,21 @@ const Atelier = (()=>{
     src=src.replace(/(`+)([^`]|[^`].*?[^`])\1(?!`)/g,(m,t,code)=>P("<code>"+esc(code.replace(/^ | $/g,""))+"</code>"));
     // inline math $...$ (not $$, not escaped)
     src=src.replace(/(?<!\\)\$(?!\$)((?:\\.|[^$\\])+?)\$(?!\d)/g,(m,tex)=>P('<span class="math-inline">'+Math2ML.render(tex,false)+'</span>'));
-    // escaped chars
+    // backslash escapes: \* \_ \| \# etc. -> caracter literal
+    src=src.replace(/\\([\\`*_{}\[\]()#+\-.!|~^=<>$:])/g,(m,c)=>P(esc(c)));
     src=esc(src);
     // images ![alt](src "title")
-    src=src.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+&quot;([^&]*)&quot;)?\)/g,(m,alt,url,title)=>
-      `<img src="${escAttr(url)}" alt="${escAttr(alt)}"${title?` title="${escAttr(title)}"`:""} loading="lazy">`);
+    src=src.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+(?:&quot;|")([^"]*)(?:&quot;|"))?\)/g,(m,alt,url,title)=>{
+      url=unesc(url);if(/^\s*(javascript|vbscript):/i.test(url))url="";
+      return `<img src="${escAttr(url)}" alt="${escAttr(unesc(alt))}"${title?` title="${escAttr(unesc(title))}"`:""} loading="lazy">`;});
     // links [text](url "title")
-    src=src.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+&quot;([^&]*)&quot;)?\)/g,(m,txt,url,title)=>{
+    src=src.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+(?:&quot;|")([^"]*)(?:&quot;|"))?\)/g,(m,txt,url,title)=>{
+      url=unesc(url);
       const safe=/^(https?:|mailto:|#|\/|\.\/|ftp:|tel:)/i.test(url)?url:"#";
-      return `<a href="${escAttr(safe)}"${title?` title="${escAttr(title)}"`:""}${/^https?:/i.test(safe)?' target="_blank" rel="noopener"':""}>${txt}</a>`;
+      return `<a href="${escAttr(safe)}"${title?` title="${escAttr(unesc(title))}"`:""}${/^https?:/i.test(safe)?' target="_blank" rel="noopener noreferrer"':""}>${txt}</a>`;
     });
     // autolink <url>
-    src=src.replace(/&lt;(https?:\/\/[^\s&]+)&gt;/g,(m,u)=>`<a href="${escAttr(u)}" target="_blank" rel="noopener">${u}</a>`);
+    src=src.replace(/&lt;(https?:\/\/[^\s]+?)&gt;/g,(m,u)=>`<a href="${escAttr(unesc(u))}" target="_blank" rel="noopener noreferrer">${u}</a>`);
     src=src.replace(/&lt;([^\s@&]+@[^\s@&]+\.[^\s&]+)&gt;/g,(m,e)=>`<a href="mailto:${escAttr(e)}">${e}</a>`);
     // footnote refs [^id]
     src=src.replace(/\[\^([^\]]+)\]/g,(m,id)=>{
@@ -836,7 +858,7 @@ const Atelier = (()=>{
       if(seg[0]==="<"){return seg;}            // real tag: leave, keep prev as flanking text context
       if(seg[0]==="\u0000"){prev="x";return seg;} // protected code/math placeholder counts as word-ish
       let s=seg;
-      if(emojiOn) s=s.replace(/:([a-z0-9_+\-]{2,32}):/g,(m,name)=>EMOJI[name]||m);
+      if(emojiOn) s=s.replace(/:([a-z0-9_+\-]{2,32}):/g,(m,name)=>own(EMOJI,name)?EMOJI[name]:m);
       if(smartTypoOn){
         s=s.replace(/---/g,"\u2014").replace(/(?<!-)--(?!-)/g,"\u2013").replace(/\.\.\./g,"\u2026");
         let out="";
@@ -856,9 +878,11 @@ const Atelier = (()=>{
     return Highlighter.run(code,lang);
   }
 
-  function parse(md){
-    headings=[];footnotes={};footnoteOrder=[];
-    md=md.replace(/\r\n?/g,"\n").replace(/\t/g,"  ");
+  function parse(md){return parseBlocks(md,false);}
+  function parseBlocks(md,nested){
+    if(!nested){headings=[];footnotes=Object.create(null);footnoteOrder=[];usedIds=Object.create(null);}
+    md=md.replace(/\r\n?/g,"\n");
+    if(!nested)md=expandTabs(md); /* tab-urile din blocurile de cod rămân neatinse */
 
     // extract footnote definitions
     md=md.replace(/^\[\^([^\]]+)\]:[ \t]*(.+(?:\n {2,}.+)*)/gm,(m,id,body)=>{
@@ -901,7 +925,7 @@ const Atelier = (()=>{
         const buf=[];i++;
         while(i<n && !/^:::+\s*$/.test(lines[i])){buf.push(lines[i]);i++;}
         i++;
-        const inner=parse(buf.join("\n"));
+        const inner=parseBlocks(buf.join("\n"),true);
         if(kind==="details"){
           out.push(`<details><summary>${inline(title||"Detalii")}</summary>${inner}</details>`);
         }else{
@@ -925,7 +949,7 @@ const Atelier = (()=>{
       let h=line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
       if(h){
         const lvl=h[1].length;let txt=h[2];
-        const id=slug(txt.replace(/[*_`~]/g,""));
+        const id=uniq(slug(txt.replace(/[*_`~]/g,"")));
         headings.push({level:lvl,text:txt.replace(/[*_`~$]/g,""),id});
         out.push(`<h${lvl} id="${id}"><a class="anchor" href="#${id}" aria-hidden="true">#</a>${inline(txt)}</h${lvl}>`);
         i++;continue;
@@ -933,11 +957,11 @@ const Atelier = (()=>{
 
       // setext heading
       if(i+1<n && /^=+\s*$/.test(lines[i+1]) && !isBlank(line)){
-        const id=slug(line);headings.push({level:1,text:line,id});
+        const id=uniq(slug(line));headings.push({level:1,text:line,id});
         out.push(`<h1 id="${id}"><a class="anchor" href="#${id}" aria-hidden="true">#</a>${inline(line)}</h1>`);i+=2;continue;
       }
       if(i+1<n && /^-{2,}\s*$/.test(lines[i+1]) && !isBlank(line) && !/^[-*+]\s/.test(line)){
-        const id=slug(line);headings.push({level:2,text:line,id});
+        const id=uniq(slug(line));headings.push({level:2,text:line,id});
         out.push(`<h2 id="${id}"><a class="anchor" href="#${id}" aria-hidden="true">#</a>${inline(line)}</h2>`);i+=2;continue;
       }
 
@@ -949,7 +973,7 @@ const Atelier = (()=>{
         const buf=[];
         while(i<n && /^\s*>/.test(lines[i])){buf.push(lines[i].replace(/^\s*> ?/,""));i++;}
         // lazy continuation
-        out.push(`<blockquote>${parse(buf.join("\n"))}</blockquote>`);continue;
+        out.push(`<blockquote>${parseBlocks(buf.join("\n"),true)}</blockquote>`);continue;
       }
 
       // table (GFM): header row + delimiter row
@@ -980,7 +1004,7 @@ const Atelier = (()=>{
       // raw HTML-ish line passthrough for a few safe block tags? -> treat as paragraph (escaped)
       // paragraph: collect until blank or block starter
       const para=[line];i++;
-      while(i<n && !isBlank(lines[i]) && !startsBlock(lines[i])){para.push(lines[i]);i++;}
+      while(i<n && !isBlank(lines[i]) && !startsBlock(lines[i],lines[i+1])){para.push(lines[i]);i++;}
       let ptext=para.map(l=>l.replace(/  +$/,m=>"\u0002")).join("\n").replace(/\u0002\n/g,"<br>\n").replace(/\u0002/g,"");
       out.push("<p>"+inline(ptext).replace(/\n/g," ")+"</p>");
     }
@@ -988,7 +1012,7 @@ const Atelier = (()=>{
     let html=out.join("\n");
 
     // footnotes section
-    if(footnoteOrder.length){
+    if(!nested&&footnoteOrder.length){
       let items=footnoteOrder.map(id=>{
         const body=footnotes[id]||"";
         return `<li id="fn-${slug(id)}">${body} <a href="#fnref-${slug(id)}" class="fn-back" aria-label="înapoi">↩</a></li>`;
@@ -997,16 +1021,16 @@ const Atelier = (()=>{
     }
 
     // TOC injection
-    if(html.indexOf("\u0001TOC\u0001")>=0){
+    if(!nested&&html.indexOf("\u0001TOC\u0001")>=0){
       html=html.replace(/\u0001TOC\u0001/g,buildToc());
     }
     return html;
   }
 
-  function startsBlock(l){
+  function startsBlock(l,nx){
     return /^(\s*)(#{1,6}\s|>|[-*+]\s|\d+[.)]\s|```|~~~|:::|\$\$|\[\[toc\]\])/i.test(l)
       || /^\s*([-*_])(\s*\1){2,}\s*$/.test(l)
-      || /\|/.test(l);
+      || (/\|/.test(l) && nx!==undefined && /^\s*\|?[\s:|-]+\|?\s*$/.test(nx) && /-/.test(nx));
   }
   function splitRow(line){
     let s=line.trim().replace(/^\|/,"").replace(/\|$/,"");
@@ -1028,7 +1052,7 @@ const Atelier = (()=>{
       if(m){
         if(cur)items.push(cur);
         const ordered=/\d/.test(m[2]);
-        cur={indent:m[1].length,ordered,text:m[3],children:[]};
+        cur={indent:m[1].length,ordered,num:ordered?parseInt(m[2],10):1,text:m[3],children:[]};
       }else if(cur){
         cur.children.push(raw.replace(new RegExp("^\\s{0,"+(cur.indent+2)+"}"),""));
       }
@@ -1060,7 +1084,8 @@ const Atelier = (()=>{
         }
         return nodes;
       }
-      const tree=consume(list[0].indent);
+      let tree=[];
+      while(i2<list.length){const b4=i2;tree=tree.concat(consume(list[i2].indent));if(i2===b4)i2++;}
       return tree;
     }
 
@@ -1088,10 +1113,10 @@ const Atelier = (()=>{
       // split siblings into consecutive runs sharing the same marker type
       let html="";let k=0;
       while(k<nodes.length){
-        const ordered=nodes[k].it.ordered;
+        const ordered=nodes[k].it.ordered;const startNum=nodes[k].it.num;
         let lis="";
         while(k<nodes.length && nodes[k].it.ordered===ordered){lis+=renderLi(nodes[k]);k++;}
-        html+=ordered?`<ol>${lis}</ol>`:`<ul>${lis}</ul>`;
+        html+=ordered?`<ol${Number.isFinite(startNum)&&startNum!==1?` start="${startNum}"`:""}>${lis}</ol>`:`<ul>${lis}</ul>`;
       }
       return html;
     }
@@ -1099,7 +1124,7 @@ const Atelier = (()=>{
   }
   function parseInlineBlock(text){
     // for list-item continuation paragraphs
-    if(/\n\s*\n/.test(text)||startsBlock(text))return parse(text);
+    if(/\n\s*\n/.test(text)||startsBlock(text)||/\|/.test(text))return parseBlocks(text,true);
     return "<p>"+inline(text)+"</p>";
   }
 
@@ -1237,7 +1262,7 @@ const Math2ML = (()=>{
       if(c==="binom"){const a=group(toks,pos),b=group(toks,pos);return `<mrow><mo>(</mo><mfrac linethickness="0">${a}${b}</mfrac><mo>)</mo></mrow>`;}
       if(c==="sqrt"){
         if(pos.i<toks.length&&toks[pos.i].t==="op"&&toks[pos.i].v==="["){pos.i++;
-          let idx=[];while(pos.i<toks.length&&!(toks[pos.i].t==="op"&&toks[pos.i].v==="]")){idx.push(parseAtom(toks,pos));}
+          let idx=[];while(pos.i<toks.length&&!(toks[pos.i].t==="op"&&toks[pos.i].v==="]")){const b4=pos.i;const ia=parseAtom(toks,pos);if(ia)idx.push(ia);if(pos.i===b4)pos.i++;}
           if(pos.i<toks.length)pos.i++;const rad=group(toks,pos);return `<mroot>${rad}<mrow>${idx.join("")}</mrow></mroot>`;}
         const rad=group(toks,pos);return `<msqrt>${rad}</msqrt>`;
       }
@@ -1264,7 +1289,7 @@ const Math2ML = (()=>{
         return `<mrow><mo>${esc(open)}</mo>${seq.join("")}<mo>${esc(close)}</mo></mrow>`;
       }
       if(c==="right"){consumeDelim(toks,pos);return "";}
-      if(ACCENTS[c]){const a=group(toks,pos);
+      if(own(ACCENTS,c)){const a=group(toks,pos);
         if(c==="vec")return `<mover>${a}<mo>→</mo></mover>`;
         if(c==="hat")return `<mover>${a}<mo>^</mo></mover>`;
         if(c==="bar"||c==="overline")return `<mover>${a}<mo>‾</mo></mover>`;
@@ -1275,13 +1300,13 @@ const Math2ML = (()=>{
       }
       if(c==="overline")  {const a=group(toks,pos);return `<mover>${a}<mo>‾</mo></mover>`;}
       if(c==="underline") {const a=group(toks,pos);return `<munder>${a}<mo>_</mo></munder>`;}
-      if(GREEK[c])return `<mi>${GREEK[c]}</mi>`;
+      if(own(GREEK,c))return `<mi>${GREEK[c]}</mi>`;
       if(FUNCS.indexOf(c)>=0)return `<mi>${c}</mi>`;
-      if(BIGOPS[c]){
+      if(own(BIGOPS,c)){
         const sym=OPS[c]||(c==="lim"?"lim":"");
         return `<mo${(c!=="lim")?' largeop="true"':''}>${c==="lim"?"lim":esc(sym)}</mo>`;
       }
-      if(OPS[c])return `<mo>${esc(OPS[c])}</mo>`;
+      if(own(OPS,c))return `<mo>${esc(OPS[c])}</mo>`;
       if(c===","||c===" ")return "<mspace width='0.2em'/>";
       if(c==="quad")return "<mspace width='1em'/>";
       if(c==="qquad")return "<mspace width='2em'/>";
@@ -1308,7 +1333,8 @@ const Math2ML = (()=>{
     try{
       const toks=tokenize(tex);
       const pos={i:0};
-      const atoms=parseSeq(toks,pos,null);
+      let atoms=parseSeq(toks,pos,null);
+      while(pos.i<toks.length){pos.i++;atoms=atoms.concat(parseSeq(toks,pos,null));} /* } sau & rătăcit nu mai taie restul formulei */
       const body=atoms.join("");
       return `<math xmlns="http://www.w3.org/1998/Math/MathML"${block?' display="block"':''}><mrow>${body}</mrow></math>`;
     }catch(e){
@@ -1334,55 +1360,62 @@ const Highlighter = (()=>{
   KW.go=["func","package","import","var","const","return","if","else","for","range","type","struct","interface","map","chan","go","defer","select","switch","case","nil","true","false"];
   KW.rust=["fn","let","mut","const","struct","enum","impl","trait","pub","use","mod","return","if","else","for","while","loop","match","self","Self","None","Some","Ok","Err","true","false"];
 
+  function stash(){
+    const st=[];
+    const enc=n=>"\uE000"+String(n).replace(/\d/g,d=>String.fromCharCode(0xE010+(+d)))+"\uE001";
+    return {
+      put(cls,txt){st.push('<span class="'+cls+'">'+txt+'</span>');return enc(st.length-1);},
+      done(x){
+        const t1=/\uE000[\uE010-\uE019]+\uE001/,re=/\uE000([\uE010-\uE019]+)\uE001/g;
+        for(let g=0;g<10&&t1.test(x);g++)x=x.replace(re,(m,d)=>st[+d.replace(/[\uE010-\uE019]/g,c=>c.charCodeAt(0)-0xE010)]);
+        return x;
+      }
+    };
+  }
+  const clean=c=>c.replace(/[\uE000\uE001]/g,"");
   function generic(code,lang){
-    code=esc(code);
-    const kws=KW[lang]||[];
-    // comments
-    if(lang==="python"||lang==="bash"||lang==="ruby"||lang==="yaml"||lang==="yml"||lang==="r"){
-      code=code.replace(/(#.*?$)/gm,'<span class="tok-com">$1</span>');
-    }else if(lang==="sql"){
-      code=code.replace(/(--.*?$)/gm,'<span class="tok-com">$1</span>');
-    }else{
-      code=code.replace(/(\/\/.*?$)/gm,'<span class="tok-com">$1</span>');
-      code=code.replace(/(\/\*[\s\S]*?\*\/)/g,'<span class="tok-com">$1</span>');
-    }
-    // strings
-    code=code.replace(/(&quot;[^&]*?&quot;|&#39;[^&]*?&#39;|"[^"\n]*"|'[^'\n]*'|`[^`]*`)/g,'<span class="tok-str">$1</span>');
-    // numbers
-    code=code.replace(/\b(\d+\.?\d*([eE][+-]?\d+)?)\b/g,'<span class="tok-num">$1</span>');
-    // keywords
+    const S=stash();
+    code=esc(clean(code));
+    const kws=own(KW,lang)?KW[lang]:[];
+    let com;
+    if(lang==="python"||lang==="bash"||lang==="ruby"||lang==="yaml"||lang==="yml"||lang==="r")com="#.*?$";
+    else if(lang==="sql")com="--.*?$";
+    else com="\\/\\/.*?$|\\/\\*[\\s\\S]*?\\*\\/";
+    // comentarii și șiruri într-o singură trecere (primul din text câștigă), apoi păstrate ca marcaje
+    code=code.replace(new RegExp("("+com+")|(\"[^\"\\n]*\"|'[^'\\n]*'|`[^`]*`)","gm"),(m,c,str)=>c?S.put("tok-com",c):S.put("tok-str",str));
+    code=code.replace(/\b(\d+\.?\d*([eE][+-]?\d+)?)\b/g,m=>S.put("tok-num",m));
     if(kws.length){
       const re=new RegExp("\\b("+kws.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")\\b",lang==="sql"?"gi":"g");
-      code=code.replace(re,'<span class="tok-kw">$1</span>');
+      code=code.replace(re,m=>S.put("tok-kw",m));
     }
-    // function calls
-    code=code.replace(/\b([a-zA-Z_]\w*)(\s*\()/g,(m,fn,p)=>{
-      if(/tok-/.test(fn))return m;return `<span class="tok-fn">${fn}</span>${p}`;
-    });
-    return code;
+    code=code.replace(/\b([a-zA-Z_]\w*)(\s*\()/g,(m,fn,p)=>S.put("tok-fn",fn)+p);
+    return S.done(code);
   }
   function html(code){
-    code=esc(code);
-    code=code.replace(/(&lt;!--[\s\S]*?--&gt;)/g,'<span class="tok-com">$1</span>');
-    code=code.replace(/(&lt;\/?)([a-zA-Z][\w-]*)/g,'$1<span class="tok-tag">$2</span>');
-    code=code.replace(/([a-zA-Z-]+)(=)(&quot;[^&]*?&quot;|"[^"]*")/g,'<span class="tok-attr">$1</span>$2<span class="tok-str">$3</span>');
-    return code;
+    const S=stash();
+    code=esc(clean(code));
+    code=code.replace(/&lt;!--[\s\S]*?--&gt;/g,m=>S.put("tok-com",m));
+    code=code.replace(/(&lt;\/?)([a-zA-Z][\w-]*)/g,(m,a,b)=>a+S.put("tok-tag",b));
+    code=code.replace(/([a-zA-Z-]+)(=)(&quot;[^&]*?&quot;|"[^"]*")/g,(m,a,b,c)=>S.put("tok-attr",a)+b+S.put("tok-str",c));
+    return S.done(code);
   }
   function css(code){
-    code=esc(code);
-    code=code.replace(/(\/\*[\s\S]*?\*\/)/g,'<span class="tok-com">$1</span>');
-    code=code.replace(/([.#]?[a-zA-Z_-][\w-]*)(\s*\{)/g,'<span class="tok-tag">$1</span>$2');
-    code=code.replace(/([a-z-]+)(\s*:)/g,'<span class="tok-attr">$1</span>$2');
-    code=code.replace(/(:)([^;{}\n]+)(;)/g,(m,a,v,b)=>a+'<span class="tok-str">'+v+'</span>'+b);
-    return code;
+    const S=stash();
+    code=esc(clean(code));
+    code=code.replace(/\/\*[\s\S]*?\*\//g,m=>S.put("tok-com",m));
+    code=code.replace(/([.#]?[a-zA-Z_-][\w-]*)(\s*\{)/g,(m,a,b)=>S.put("tok-tag",a)+b);
+    code=code.replace(/([a-z-]+)(\s*:)/g,(m,a,b)=>S.put("tok-attr",a)+b);
+    code=code.replace(/(:)([^;{}\n]+)(;)/g,(m,a,v,b)=>a+S.put("tok-str",v)+b);
+    return S.done(code);
   }
   function json(code){
-    code=esc(code);
-    code=code.replace(/(&quot;[^&]*?&quot;|"[^"]*")(\s*:)/g,'<span class="tok-attr">$1</span>$2');
-    code=code.replace(/(:\s*)(&quot;[^&]*?&quot;|"[^"]*")/g,'$1<span class="tok-str">$2</span>');
-    code=code.replace(/\b(true|false|null)\b/g,'<span class="tok-kw">$1</span>');
-    code=code.replace(/\b(-?\d+\.?\d*)\b/g,'<span class="tok-num">$1</span>');
-    return code;
+    const S=stash();
+    code=esc(clean(code));
+    code=code.replace(/("[^"\n]*")(\s*:)/g,(m,a,b)=>S.put("tok-attr",a)+b);
+    code=code.replace(/"[^"\n]*"/g,m=>S.put("tok-str",m));
+    code=code.replace(/\b(true|false|null)\b/g,m=>S.put("tok-kw",m));
+    code=code.replace(/\b(-?\d+\.?\d*)\b/g,m=>S.put("tok-num",m));
+    return S.done(code);
   }
   function run(code,lang){
     lang=(lang||"").toLowerCase();
@@ -1412,8 +1445,10 @@ const editor=$("#editor"), md=$("#md"), preview=$("#preview"), lines=$("#lines")
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
 
 function loadState(){
-  try{const s=JSON.parse(localStorage.getItem(LS_KEY));if(s&&s.docs)state=s;}catch(e){}
-  try{const s=JSON.parse(localStorage.getItem(LS_SET));if(s)settings=Object.assign(settings,s);}catch(e){}
+  try{const s=JSON.parse(localStorage.getItem(LS_KEY));if(s&&Array.isArray(s.docs))state=s;}catch(e){}
+  try{const s=JSON.parse(localStorage.getItem(LS_SET));if(s&&typeof s==="object")settings=Object.assign(settings,s);}catch(e){}
+  if(!own(I18N,settings.lang))settings.lang="ro";
+  state.docs=state.docs.filter(d=>d&&typeof d==="object").map(d=>Object.assign({},d,{id:String(d.id||uid()),title:String(d.title==null?"":d.title)||"Fără titlu",content:String(d.content==null?"":d.content),updated:+d.updated||Date.now(),created:+d.created||Date.now()}));
   if(!state.docs.length){
     const d=newDocObj(welcomeDoc(),t("welcome_t"));
     state.docs.push(d);state.activeId=d.id;
@@ -1531,8 +1566,12 @@ function bindPreview(){
 function toggleTask(index,checked){
   // find the index-th task line in source and flip it
   const ln=editor.value.split("\n");let c=0;
+  let fence=null;
   for(let i=0;i<ln.length;i++){
-    const m=ln[i].match(/^(\s*[-*+]\s+\[)([ xX])(\].*)$/);
+    const fm=ln[i].match(/^\s*(`{3,}|~{3,})/);
+    if(fence){if(fm&&fm[1][0]===fence.m&&fm[1].length>=fence.n&&/^\s*(`+|~+)\s*$/.test(ln[i]))fence=null;continue;}
+    if(fm){fence={m:fm[1][0],n:fm[1].length};continue;}
+    const m=ln[i].match(/^((?:\s*>)*\s*(?:[-*+]|\d+[.)])\s+\[)([ xX])(\].*)$/);
     if(m){if(c===index){ln[i]=m[1]+(checked?"x":" ")+m[3];break;}c++;}
   }
   editor.value=ln.join("\n");persist();render();
@@ -1630,6 +1669,7 @@ const ACTIONS={
   undo:()=>document.execCommand("undo"),
   redo:()=>document.execCommand("redo"),
 };
+$$(".fbtn").forEach(b=>b.addEventListener("mousedown",e=>e.preventDefault())); /* butoanele nu fură focusul din editor (undo/redo) */
 $$(".fbtn").forEach(b=>b.onclick=()=>{const a=b.dataset.act;if(ACTIONS[a])ACTIONS[a]();});
 
 /* ---------- editor events ---------- */
@@ -1640,9 +1680,13 @@ editor.addEventListener("scroll",()=>{
 });
 editor.addEventListener("keyup",updateCursor);
 editor.addEventListener("click",updateCursor);
+let tabFree=false; /* Esc eliberează Tab-ul, ca tastatura să poată părăsi editorul */
+editor.addEventListener("blur",()=>{tabFree=false;});
 editor.addEventListener("keydown",e=>{
+  if(e.key==="Escape")tabFree=true;
+  else if(e.key!=="Tab"&&e.key!=="Shift")tabFree=false;
   // Tab indent
-  if(e.key==="Tab"){e.preventDefault();
+  if(e.key==="Tab"&&!tabFree){e.preventDefault();
     if(e.shiftKey){linePrefix(l=>l.replace(/^  /,""));}
     else{const {start,end}=getSel();if(start!==end){linePrefix("  ");}else{replaceSel("  ");}}
     return;
@@ -1739,7 +1783,7 @@ function safeName(){return (activeDoc().title||"document").replace(/[^\w\u00C0-\
 function exportMd(){download(safeName()+".md",editor.value,"text/markdown;charset=utf-8");toast(t("exported"));}
 
 function buildStandaloneHtml(){
-  const body=Atelier.parse(editor.value);
+  const body=Atelier.parse(editor.value).replace(/<button class="copy" data-copy>[^<]*<\/button>/g,"");
   const title=escapeHtml(activeDoc().title);
   const css=getPreviewCSS();
   return `<!DOCTYPE html>
@@ -1787,55 +1831,56 @@ function exportPdf(){
    FIND & REPLACE
    =================================================================== */
 let findState={matches:[],idx:-1,caseSensitive:false};
-function doFind(){
+function doFind(keep,from){
   const q=$("#findInput").value;
   if(!q){findState.matches=[];$("#findCount").textContent="0/0";return;}
   const text=editor.value;const flags=findState.caseSensitive?"g":"gi";
   let re;try{re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),flags);}catch(e){return;}
   findState.matches=[];let m;while((m=re.exec(text))){findState.matches.push([m.index,m.index+m[0].length]);if(m.index===re.lastIndex)re.lastIndex++;}
-  if(findState.matches.length){findState.idx=0;gotoMatch();}
+  if(findState.matches.length){let ix=0;if(typeof from==="number"){const f=findState.matches.findIndex(x=>x[0]>=from);ix=f<0?0:f;}findState.idx=ix;gotoMatch(keep);}
   else $("#findCount").textContent="0/0 — "+t("noMatch");
 }
-function gotoMatch(){
+function gotoMatch(keep){
   if(!findState.matches.length)return;
   const [s,e]=findState.matches[findState.idx];
-  editor.focus();editor.setSelectionRange(s,e);
+  if(!keep)editor.focus();editor.setSelectionRange(s,e);
   // scroll into view
   const before=editor.value.slice(0,s);const ln=before.split("\n").length;
   const lh=parseFloat(getComputedStyle(editor).lineHeight)||22;
   editor.scrollTop=Math.max(0,(ln-5)*lh);
   $("#findCount").textContent=(findState.idx+1)+"/"+findState.matches.length;
 }
-function findNext(d){if(!findState.matches.length){doFind();return;}findState.idx=(findState.idx+d+findState.matches.length)%findState.matches.length;gotoMatch();}
+function findNext(d,keep){if(!findState.matches.length){doFind(keep);return;}findState.idx=(findState.idx+d+findState.matches.length)%findState.matches.length;gotoMatch(keep);}
 function replaceOne(){
   if(findState.idx<0||!findState.matches.length)return;
   const [s,e]=findState.matches[findState.idx];
-  editor.setRangeText($("#replInput").value,s,e,"end");persist();render();doFind();
+  const rv=$("#replInput").value;editor.setRangeText(rv,s,e,"end");persist();render();doFind(false,s+rv.length);
 }
 function replaceAll(){
   const q=$("#findInput").value;if(!q)return;
   const flags=findState.caseSensitive?"g":"gi";
   let re;try{re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),flags);}catch(e){return;}
-  editor.value=editor.value.replace(re,$("#replInput").value);persist();render();doFind();
+  const rv=$("#replInput").value;editor.value=editor.value.replace(re,()=>rv);persist();render();doFind();
 }
-$("#findInput").addEventListener("input",doFind);
+$("#findInput").addEventListener("input",()=>doFind(true));
 $("#findNext").onclick=()=>findNext(1);
 $("#findPrev").onclick=()=>findNext(-1);
-$("#findCase").onclick=function(){findState.caseSensitive=!findState.caseSensitive;this.classList.toggle("on",findState.caseSensitive);doFind();};
+$("#findCase").onclick=function(){findState.caseSensitive=!findState.caseSensitive;this.classList.toggle("on",findState.caseSensitive);doFind(true);};
 $("#replOne").onclick=replaceOne;
 $("#replAll").onclick=replaceAll;
 $("#findClose").onclick=()=>{$("#findbar").classList.remove("show");editor.focus();};
-$("#findInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();findNext(e.shiftKey?-1:1);}if(e.key==="Escape")$("#findClose").click();});
+$("#findInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();findNext(e.shiftKey?-1:1,true);}if(e.key==="Escape")$("#findClose").click();});
 
 /* ===================================================================
    TOC modal
    =================================================================== */
+function mdById(h){const id=String(h||"").slice(1);return id?md.querySelector('[id="'+id.replace(/["\\]/g,"\\$&")+'"]'):null;}
 function showToc(){
   const hs=Atelier.getHeadings();
   if(!hs.length){$("#tocList").innerHTML=`<p style="color:var(--ink-faint)">${t("noHeadings")}</p>`;}
   else $("#tocList").innerHTML=Atelier.buildToc();
   $("#tocList").querySelectorAll("a").forEach(a=>{
-    a.onclick=ev=>{ev.preventDefault();const el=md.querySelector(a.getAttribute("href"));if(el){el.scrollIntoView({behavior:"smooth",block:"start"});closeAll();}};
+    a.onclick=ev=>{ev.preventDefault();const el=mdById(a.getAttribute("href"));if(el){el.scrollIntoView({behavior:"smooth",block:"start"});closeAll();}};
   });
   open("#scrimToc");
 }
@@ -1897,7 +1942,7 @@ $("#edFont").oninput=function(){settings.edFont=+this.value;editor.style.fontSiz
 $("#pvFont").oninput=function(){settings.pvFont=+this.value;preview.style.fontSize=this.value+"px";saveSettings();};
 $("#langSel").onchange=function(){settings.lang=this.value;LANG=settings.lang;saveSettings();applyI18n();render();renderDocList();};
 
-$("#btnWipe").onclick=()=>{if(confirm(t("confWipe"))){localStorage.removeItem(LS_KEY);localStorage.removeItem(LS_SET);location.reload();}};
+$("#btnWipe").onclick=()=>{if(confirm(t("confWipe"))){try{localStorage.removeItem(LS_KEY);localStorage.removeItem(LS_SET);}catch(e){}location.reload();}};
 
 /* ===================================================================
    MODALS
@@ -2000,7 +2045,7 @@ function toast(msg){const el=$("#toast");el.textContent=msg;el.classList.add("sh
 md.addEventListener("click",e=>{
   const a=e.target.closest("a");
   if(a&&a.getAttribute("href")&&a.getAttribute("href").startsWith("#")){
-    const el=md.querySelector(a.getAttribute("href"));
+    const el=mdById(a.getAttribute("href"));
     if(el){e.preventDefault();el.scrollIntoView({behavior:"smooth",block:"start"});}
   }
 });
@@ -2015,7 +2060,9 @@ function boot(){
   buildThemePicker();render();updateCursor();renderDocList();
   $("#stSaved").textContent=t("savedNow");$("#stSaved").classList.add("saved");
   // warn before unload if unsaved (debounce window)
-  window.addEventListener("beforeunload",()=>{if(dirty)saveState();});
+  const flush=()=>{if(dirty){clearTimeout(saveTimer);saveState();dirty=false;}};
+  window.addEventListener("beforeunload",flush);window.addEventListener("pagehide",flush);
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")flush();});
 }
 boot();
 </script>
