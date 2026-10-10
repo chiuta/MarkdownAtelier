@@ -54,16 +54,16 @@
 /* ---- Tema implicită: Atelier (hârtie caldă) ---- */
 [data-theme="atelier"]{
   --bg:#f4efe6; --bg2:#ece4d6; --panel:#fbf8f1; --panel2:#f3ecdf;
-  --ink:#2b2118; --ink-soft:#5c5040; --ink-faint:#8a7b66;
+  --ink:#2b2118; --ink-soft:#5c5040; --ink-faint:#6e6252;
   --line:#dcd0bc; --line-soft:#e7ddca;
   --accent:#9a3b1f; --accent-soft:#c4623f; --accent-bg:#f0e0d6;
   --link:#1d5e57; --code-bg:#efe7d6; --code-ink:#7a3c12;
   --sel:#e6c9a8; --shadow:rgba(60,40,20,.14);
-  --kbd:#fff; --mark:#f5dca0; --quote:#8a7253;
+  --kbd:#fff; --mark:#f5dca0; --quote:#746046;
 }
 [data-theme="midnight"]{
   --bg:#14171d; --bg2:#1b1f27; --panel:#1a1e26; --panel2:#21262f;
-  --ink:#e6e2d8; --ink-soft:#a9a799; --ink-faint:#73715f;
+  --ink:#e6e2d8; --ink-soft:#a9a799; --ink-faint:#929082;
   --line:#2e333d; --line-soft:#262b34;
   --accent:#e0a458; --accent-soft:#f0c585; --accent-bg:#2a2419;
   --link:#6fcac0; --code-bg:#22272f; --code-ink:#e6b06a;
@@ -72,16 +72,16 @@
 }
 [data-theme="paper"]{
   --bg:#ffffff; --bg2:#f5f5f5; --panel:#ffffff; --panel2:#fafafa;
-  --ink:#1a1a1a; --ink-soft:#555; --ink-faint:#999;
+  --ink:#1a1a1a; --ink-soft:#555; --ink-faint:#666666;
   --line:#e3e3e3; --line-soft:#eee;
   --accent:#0b66c3; --accent-soft:#3b8be0; --accent-bg:#e8f1fb;
   --link:#0b66c3; --code-bg:#f4f4f4; --code-ink:#b5285b;
   --sel:#cfe6ff; --shadow:rgba(0,0,0,.1);
-  --kbd:#fff; --mark:#fff3a0; --quote:#777;
+  --kbd:#fff; --mark:#fff3a0; --quote:#6b6b6b;
 }
 [data-theme="forest"]{
   --bg:#0f1b16; --bg2:#15241d; --panel:#13201a; --panel2:#1a2c23;
-  --ink:#dfeadd; --ink-soft:#9bb3a3; --ink-faint:#65806f;
+  --ink:#dfeadd; --ink-soft:#9bb3a3; --ink-faint:#8fa597;
   --line:#26392f; --line-soft:#1f3027;
   --accent:#e8a13a; --accent-soft:#f3bd6c; --accent-bg:#26331c;
   --link:#7fd1b0; --code-bg:#1b2c23; --code-ink:#9fd9a0;
@@ -90,12 +90,12 @@
 }
 [data-theme="sepia"]{
   --bg:#e9dcc3; --bg2:#e0d1b4; --panel:#f1e7d3; --panel2:#e7dac2;
-  --ink:#3a2f23; --ink-soft:#6b5a44; --ink-faint:#9a8568;
+  --ink:#3a2f23; --ink-soft:#6b5a44; --ink-faint:#635543;
   --line:#cdba9a; --line-soft:#d8c8aa;
   --accent:#8a4a23; --accent-soft:#b06b3f; --accent-bg:#e6d3b8;
-  --link:#3d6b4f; --code-bg:#e3d4b6; --code-ink:#8a4a23;
+  --link:#2f5a41; --code-bg:#e3d4b6; --code-ink:#8a4a23;
   --sel:#d6bd92; --shadow:rgba(80,55,25,.2);
-  --kbd:#f6efe0; --mark:#e8c87a; --quote:#7a6243;
+  --kbd:#f6efe0; --mark:#e8c87a; --quote:#6e583c;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -191,7 +191,7 @@ main{flex:1;display:flex;min-height:0;position:relative}
   padding:1.4rem .4rem 1.4rem .9rem;font-family:var(--font-mono);font-size:14px;
   line-height:1.75;color:var(--ink-faint);text-align:right;user-select:none;
   overflow:hidden;background:var(--panel);border-right:1px solid var(--line-soft);
-  min-width:3ch;white-space:pre;opacity:.6;
+  min-width:3ch;white-space:pre;
 }
 #editor{
   flex:1;min-width:0;border:none;outline:none;resize:none;background:transparent;
@@ -378,6 +378,7 @@ input[type=range]{accent-color:var(--accent);width:140px}
 .btn:hover{border-color:var(--accent-soft);background:var(--accent-bg)}
 .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn.primary:hover{background:var(--accent-soft)}
+[data-theme="midnight"] .btn.primary,[data-theme="forest"] .btn.primary{color:#14171d}
 .btn.danger:hover{border-color:#c0392b;background:#c0392b22;color:#c0392b}
 .modal .foot{display:flex;gap:.6rem;justify-content:flex-end;padding:1rem 1.3rem;border-top:1px solid var(--line)}
 .about-glyph{font-size:2.6rem;text-align:center;margin:.2rem 0 .4rem}
@@ -592,7 +593,7 @@ input[type=range]{accent-color:var(--accent);width:140px}
 <!-- ===== MODALS ===== -->
 <div class="scrim" id="scrimSettings">
   <div class="modal">
-    <h2><span data-i="settings">Setări</span><button class="x" data-close><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
+    <h2><span data-i="settings">Setări</span><button class="x" data-close aria-label="Închide / Close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
     <div class="body">
       <h3 data-i="theme">Temă</h3>
       <div class="themes" id="themePicker"></div>
@@ -615,8 +616,8 @@ input[type=range]{accent-color:var(--accent);width:140px}
       <div class="row"><div class="lbl" data-i="smartTypo">Tipografie inteligentă<small data-i="smartTypoSm">Ghilimele curbe, liniuțe, puncte de suspensie</small></div><div class="toggle" id="tgSmart"></div></div>
       <div class="row"><div class="lbl" data-i="emojiSc">Coduri emoji<small data-i="emojiScSm">Transformă :rocket: în 🚀</small></div><div class="toggle on" id="tgEmoji"></div></div>
       <h3 data-i="fontsz">Dimensiune text</h3>
-      <div class="row"><div class="lbl" data-i="edfs">Editor</div><input type="range" id="edFont" min="12" max="22" value="14"></div>
-      <div class="row"><div class="lbl" data-i="pvfs">Previzualizare</div><input type="range" id="pvFont" min="14" max="24" value="17"></div>
+      <div class="row"><div class="lbl" id="edFontLbl" data-i="edfs">Editor</div><input type="range" id="edFont" aria-labelledby="edFontLbl" min="12" max="22" value="14"></div>
+      <div class="row"><div class="lbl" id="pvFontLbl" data-i="pvfs">Previzualizare</div><input type="range" id="pvFont" aria-labelledby="pvFontLbl" min="14" max="24" value="17"></div>
       <h3 data-i="data">Date</h3>
       <div class="row"><div class="lbl" data-i="dataex">Stocare locală (localStorage)<small data-i="datasm">Documentele tale rămân pe acest dispozitiv. Nimic nu pleacă în rețea.</small></div></div>
     </div>
@@ -629,7 +630,7 @@ input[type=range]{accent-color:var(--accent);width:140px}
 
 <div class="scrim" id="scrimDocs">
   <div class="modal">
-    <h2><span data-i="docs">Documente</span><button class="x" data-close><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
+    <h2><span data-i="docs">Documente</span><button class="x" data-close aria-label="Închide / Close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
     <div class="body"><div class="doclist" id="docList"></div></div>
     <div class="foot">
       <button class="btn" id="btnImport" data-i="import">Importă .md</button>
@@ -640,7 +641,7 @@ input[type=range]{accent-color:var(--accent);width:140px}
 
 <div class="scrim" id="scrimExport">
   <div class="modal">
-    <h2><span data-i="export">Export</span><button class="x" data-close><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
+    <h2><span data-i="export">Export</span><button class="x" data-close aria-label="Închide / Close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
     <div class="body">
       <p class="help-p" data-i="exptxt">Alege formatul. Totul se generează local, în browser — fără server.</p>
       <div class="row"><div class="lbl">Markdown <code>.md</code><small data-i="expmd">Fișierul sursă, exact ce ai scris.</small></div><button class="btn" id="expMd">↓ .md</button></div>
@@ -653,15 +654,15 @@ input[type=range]{accent-color:var(--accent);width:140px}
 
 <div class="scrim" id="scrimToc">
   <div class="modal">
-    <h2><span data-i="toc">Cuprins</span><button class="x" data-close><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
+    <h2><span data-i="toc">Cuprins</span><button class="x" data-close aria-label="Închide / Close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
     <div class="body"><div id="tocList" class="md"></div></div>
   </div>
 </div>
 
 <div class="scrim" id="scrimHelp">
   <div class="modal wide">
-    <h2><span data-i="help">Ajutor & sintaxă</span><button class="x" data-close><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
-    <div class="body">
+    <h2><span data-i="help">Ajutor & sintaxă</span><button class="x" data-close aria-label="Închide / Close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
+    <div class="body" tabindex="0">
       <h3 data-i="shortcuts">Scurtături</h3>
       <div class="kbds">
         <div class="k"><span data-i="k_bold">Îngroșat</span><kbd>Ctrl B</kbd></div>
@@ -690,7 +691,7 @@ input[type=range]{accent-color:var(--accent);width:140px}
 
 <div class="scrim" id="scrimAbout">
   <div class="modal">
-    <h2><span data-i="aboutTitle">Despre MarkdownAtelier</span><button class="x" data-close><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
+    <h2><span data-i="aboutTitle">Despre MarkdownAtelier</span><button class="x" data-close aria-label="Închide / Close"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></h2>
     <div class="body">
       <div class="about-glyph">✒️</div>
       <h3 data-i="authorH">Autorul</h3>
@@ -940,10 +941,10 @@ const Atelier = (()=>{
         const buf=[];i++;
         while(i<n && !/^\s*\$\$\s*$/.test(lines[i])){buf.push(lines[i]);i++;}
         i++;
-        out.push(`<div class="math-block">${Math2ML.render(buf.join("\n"),true)}</div>`);continue;
+        out.push(`<div class="math-block" tabindex="0">${Math2ML.render(buf.join("\n"),true)}</div>`);continue;
       }
       let oneLineMath=line.match(/^\s*\$\$(.+?)\$\$\s*$/);
-      if(oneLineMath){out.push(`<div class="math-block">${Math2ML.render(oneLineMath[1],true)}</div>`);i++;continue;}
+      if(oneLineMath){out.push(`<div class="math-block" tabindex="0">${Math2ML.render(oneLineMath[1],true)}</div>`);i++;continue;}
 
       // heading ATX
       let h=line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
@@ -951,18 +952,18 @@ const Atelier = (()=>{
         const lvl=h[1].length;let txt=h[2];
         const id=uniq(slug(txt.replace(/[*_`~]/g,"")));
         headings.push({level:lvl,text:txt.replace(/[*_`~$]/g,""),id});
-        out.push(`<h${lvl} id="${id}"><a class="anchor" href="#${id}" aria-hidden="true">#</a>${inline(txt)}</h${lvl}>`);
+        out.push(`<h${lvl} id="${id}"><a class="anchor" href="#${id}" aria-hidden="true" tabindex="-1">#</a>${inline(txt)}</h${lvl}>`);
         i++;continue;
       }
 
       // setext heading
       if(i+1<n && /^=+\s*$/.test(lines[i+1]) && !isBlank(line)){
         const id=uniq(slug(line));headings.push({level:1,text:line,id});
-        out.push(`<h1 id="${id}"><a class="anchor" href="#${id}" aria-hidden="true">#</a>${inline(line)}</h1>`);i+=2;continue;
+        out.push(`<h1 id="${id}"><a class="anchor" href="#${id}" aria-hidden="true" tabindex="-1">#</a>${inline(line)}</h1>`);i+=2;continue;
       }
       if(i+1<n && /^-{2,}\s*$/.test(lines[i+1]) && !isBlank(line) && !/^[-*+]\s/.test(line)){
         const id=uniq(slug(line));headings.push({level:2,text:line,id});
-        out.push(`<h2 id="${id}"><a class="anchor" href="#${id}" aria-hidden="true">#</a>${inline(line)}</h2>`);i+=2;continue;
+        out.push(`<h2 id="${id}"><a class="anchor" href="#${id}" aria-hidden="true" tabindex="-1">#</a>${inline(line)}</h2>`);i+=2;continue;
       }
 
       // hr
@@ -1096,7 +1097,7 @@ const Atelier = (()=>{
       let liClass="",content;
       if(task){
         liClass=' class="task"';
-        content=`<input type="checkbox" disabled${/[xX]/.test(task[1])?" checked":""}> ${inline(task[2])}`;
+        content=`<input type="checkbox" aria-label="${escAttr(task[2])}" disabled${/[xX]/.test(task[1])?" checked":""}> ${inline(task[2])}`;
       }else{
         content=inline(it.text);
       }
