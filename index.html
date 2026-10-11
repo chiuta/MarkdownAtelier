@@ -441,7 +441,15 @@ input[type=range]{accent-color:var(--accent);width:140px}
 
 /* mobile */
 .mtabs{display:none}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:760px){
+  main{flex-direction:column}
+  header.bar{flex-wrap:wrap;row-gap:.2rem}
+  .brand{order:1}
+  .bar .group{order:2;margin-left:auto;gap:0}
+  .doctitle{order:3;flex:1 1 100%;min-width:0}
+  .tbtn{padding:.4rem .38rem}
+  .sep{margin:0 .1rem}
   body{font-size:14px}
   .brand .name{display:none}
   .tbtn .lab{display:none}
@@ -457,8 +465,9 @@ input[type=range]{accent-color:var(--accent);width:140px}
   #editor{padding:1rem 1rem 40vh}
   #lines{display:none}
   .kbds{grid-template-columns:1fr}
+  footer.status{flex-wrap:wrap;gap:.1rem .7rem}
+  footer.status .grow,#stTheme,footer.status .s:has(#stChars){display:none}
 }
-.mtabs{display:none}
 
 /* print */
 @media print{
@@ -483,7 +492,8 @@ input[type=range]{accent-color:var(--accent);width:140px}
   <header class="bar">
     <div class="brand" title="MarkdownAtelier">
       <div class="glyph">M</div>
-      <div class="name">Markdown<b>Atelier</b></div>
+      <div class="name" aria-hidden="true">Markdown<b>Atelier</b></div>
+      <h1 class="sr-only">MarkdownAtelier</h1>
     </div>
     <input class="doctitle" id="docTitle" value="Document fără titlu" spellcheck="false" aria-label="Titlu document">
     <div class="group">
@@ -717,7 +727,7 @@ input[type=range]{accent-color:var(--accent);width:140px}
 "use strict";
 /* =====================================================================
    MarkdownAtelier — motor complet, vanilla JS, fără dependențe externe
-   © Alexio / chiuta.github.io — trade-free, single-file, offline
+   © 2026 Alexio / chiuta.github.io — trade-free, single-file, offline
    ===================================================================== */
 
 /* ------------------------- i18n ------------------------- */

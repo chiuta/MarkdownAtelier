@@ -49,6 +49,14 @@ Pași:
 
 Descarcă `index.html` și deschide-l în browser; nu necesită internet.
 
+## Istoric / Changelog
+
+Ultima actualizare: 11 octombrie 2026.
+
+- Pe ecrane înguste (360 px) bara de sus și bara de stare nu mai depășesc ecranul; titlul documentului trece pe rând separat, iar butonul Setări este vizibil.
+- Comutatorul „Editor / Preview" apare acum pe mobil (era ascuns de o regulă CSS suprascrisă).
+- Adăugat titlu de nivel 1 (ascuns vizual) pentru cititoarele de ecran; verificare axe-core: 0 violări la 1280 și 360 px.
+
 ## Licență
 
 CC0 1.0 Universal (domeniu public) — vezi fișierul LICENSE
