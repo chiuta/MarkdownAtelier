@@ -814,7 +814,7 @@ const Atelier = (()=>{
     src=esc(src);
     // images ![alt](src "title")
     src=src.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+(?:&quot;|")([^"]*)(?:&quot;|"))?\)/g,(m,alt,url,title)=>{
-      url=unesc(url);if(/^\s*(javascript|vbscript):/i.test(url))url="";
+      url=unesc(url);{const u0=url.replace(/[\u0000-\u0020]/g,"");if(/^[a-z][a-z0-9+.-]*:/i.test(u0)&&!/^(https?:|data:image\/)/i.test(u0))url="";}
       return `<img src="${escAttr(url)}" alt="${escAttr(unesc(alt))}"${title?` title="${escAttr(unesc(title))}"`:""} loading="lazy">`;});
     // links [text](url "title")
     src=src.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+(?:&quot;|")([^"]*)(?:&quot;|"))?\)/g,(m,txt,url,title)=>{
