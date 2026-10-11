@@ -28,7 +28,7 @@
 /* Accesibilitate: inel de focus vizibil pentru navigare la tastatură. */
 :focus-visible{outline:2px solid #4a90d9;outline-offset:2px;border-radius:2px}
 </style>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; script-src 'self' blob: 'sha256-x/XYCHbGZqSr2SK9NKevgg6dc0tw66cFP+ffEni58M8='; connect-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; script-src 'self' blob: 'sha256-bcewvyY2eHR2lgIGQubeF4DETtHVla7pwF6o9wfszw0='; connect-src 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MarkdownAtelier — atelier de scriere Markdown</title>
 <meta name="description" content="Editor Markdown autonom, single-file: preview live, ecuații LaTeX (MathML nativ), teme multiple, export PDF și HTML. Fără server, fără cont, fără rețea.">
@@ -232,7 +232,7 @@ main{flex:1;display:flex;min-height:0;position:relative}
 .md a:hover{border-bottom-color:var(--link)}
 .md strong{font-weight:700}
 .md em{font-style:italic}
-.md del{opacity:.6}
+.md del{opacity:.78}
 .md mark{background:var(--mark);color:var(--ink);padding:0 .15em;border-radius:3px}
 .md ul,.md ol{margin:0 0 1em 1.5em}
 .md li{margin:.25em 0}
@@ -857,7 +857,7 @@ const Atelier = (()=>{
     // strikethrough, highlight, sub, sup
     src=src.replace(/~~([^~]+?)~~/g,"<del>$1</del>");
     src=src.replace(/==([^=]+?)==/g,"<mark>$1</mark>");
-    src=src.replace(/(?<!\w)~([^~\s]+?)~(?!\w)/g,"<sub>$1</sub>");
+    src=src.replace(/(?<!~)~([^~\s]+?)~(?!~)/g,"<sub>$1</sub>");
     src=src.replace(/\^([^\^\s]+?)\^/g,"<sup>$1</sup>");
     // hard line break (two trailing spaces handled at block level) + backslash break
     src=src.replace(/\\\n/g,"<br>\n");
@@ -1630,10 +1630,10 @@ let saveTimer=null,dirty=false;
 function persist(){
   const d=activeDoc();if(!d)return;
   d.content=editor.value;d.updated=Date.now();
-  // auto title from first heading if untitled-ish
+  if(d.autoTitle){const m=editor.value.match(/^#{1,6}[ \t]+(.+?)[ \t#]*$/m);if(m&&m[1].trim()){d.title=m[1].trim().slice(0,200);if(docTitle.value!==d.title)docTitle.value=d.title;}}
   dirty=true;$("#stSaved").textContent=t("saving");$("#stSaved").classList.remove("saved");
   clearTimeout(saveTimer);
-  saveTimer=setTimeout(()=>{saveState();dirty=false;$("#stSaved").textContent=t("savedNow");$("#stSaved").classList.add("saved");},500);
+  saveTimer=setTimeout(()=>{saveState();if(d.autoTitle)renderDocList();dirty=false;$("#stSaved").textContent=t("savedNow");$("#stSaved").classList.add("saved");},500);
 }
 
 /* ===================================================================
@@ -1757,6 +1757,7 @@ function loadDoc(id){
 }
 function newDoc(content){
   const d=newDocObj(content||"# ",t("untitled"));
+  d.autoTitle=!content||content==="# ";
   state.docs.unshift(d);state.activeId=d.id;
   editor.value=d.content;docTitle.value=d.title;
   saveState();render();renderDocList();editor.focus();
@@ -1825,7 +1826,7 @@ $("#btnRestore").onclick=()=>{
   inp.onchange=()=>restoreBackup(inp.files[0]);inp.click();
 };
 
-docTitle.addEventListener("input",()=>{const d=activeDoc();if(d){d.title=docTitle.value||t("untitled");persist();}});
+docTitle.addEventListener("input",()=>{const d=activeDoc();if(d){d.autoTitle=false;d.title=docTitle.value||t("untitled");persist();}});
 docTitle.addEventListener("blur",()=>{if(!docTitle.value.trim()){docTitle.value=t("untitled");const d=activeDoc();if(d)d.title=docTitle.value;}});
 
 /* ===================================================================
