@@ -1,5 +1,7 @@
 # MarkdownAtelier
 
+**Versiune:** 1.0.0 · **Ultima actualizare:** 12 octombrie 2026
+
 Atelier de scriere Markdown cu previzualizare, export și documente salvate local.
 
 **Live:** https://chiuta.github.io/MarkdownAtelier/
@@ -53,8 +55,7 @@ Descarcă `index.html` și deschide-l în browser; nu necesită internet.
 
 ## Istoric / Changelog
 
-Ultima actualizare: 11 octombrie 2026.
-
+- 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
 - Runda 7: `~sub~` funcționează și în mijlocul cuvintelor (H~2~O, CO~2~); un document nou primește automat titlul primului titlu Markdown (`# ...`) cât timp titlul nu a fost editat manual; contrast mai bun pentru textul ~~tăiat~~.
 - Pe ecrane înguste (360 px) bara de sus și bara de stare nu mai depășesc ecranul; titlul documentului trece pe rând separat, iar butonul Setări este vizibil.
 - Comutatorul „Editor / Preview" apare acum pe mobil (era ascuns de o regulă CSS suprascrisă).
