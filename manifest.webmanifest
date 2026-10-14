@@ -1,0 +1,37 @@
+{
+  "name": "MarkdownAtelier",
+  "short_name": "MarkdownAtel",
+  "description": "Editor Markdown autonom, single-file: preview live, ecuații LaTeX (MathML nativ), teme multiple, export PDF și HTML. Fără server, fără cont, fără rețea.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "ro",
+  "background_color": "#f4efe6",
+  "theme_color": "#f4efe6",
+  "categories": [
+    "utilities",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "x_fff_pwa": 1
+}

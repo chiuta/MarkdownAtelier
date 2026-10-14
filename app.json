@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "slug": "markdownatelier",
+  "name": "MarkdownAtelier — atelier de scriere Markdown",
+  "version": "1.1.0",
+  "updated": "2026-10-14",
+  "description": "Editor Markdown autonom, single-file: preview live, ecuații LaTeX (MathML nativ), teme multiple, export PDF și HTML. Fără server, fără cont, fără rețea.",
+  "egress": [],
+  "permissions": [
+    "clipboard",
+    "serviceWorker",
+    "localStorage"
+  ],
+  "storageKeys": [],
+  "sizeBytes": 290852,
+  "sha256": "06a2f1086bd89d8e13ac72379d3e9340de7f127812672666a7e89efbecb9c4d5",
+  "csp": {
+    "present": true,
+    "directives": {
+      "default-src": "'self'",
+      "img-src": "'self' data: blob:",
+      "style-src": "'self' 'unsafe-inline'",
+      "font-src": "'self' data:",
+      "media-src": "'self' blob: data:",
+      "object-src": "'none'",
+      "base-uri": "'self'",
+      "form-action": "'self'",
+      "worker-src": "'self' blob:",
+      "script-src": "'self' blob: sha256×3",
+      "connect-src": "'self'",
+      "manifest-src": "'self'"
+    },
+    "scriptInline": "hash",
+    "connect": "'self'"
+  },
+  "features": {
+    "export": true,
+    "import": true,
+    "i18n": [
+      "ro",
+      "en",
+      "fr",
+      "it",
+      "es",
+      "pt",
+      "de"
+    ],
+    "pwa": {
+      "manifest": true,
+      "serviceWorker": true
+    },
+    "modules": [
+      "core",
+      "label",
+      "bundle",
+      "pii",
+      "search"
+    ]
+  },
+  "kit": {
+    "version": "1.0.0",
+    "modules": [
+      "core",
+      "label",
+      "bundle",
+      "pii",
+      "search"
+    ]
+  },
+  "selfSerializing": false
+}
