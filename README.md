@@ -2,7 +2,9 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.1.0 · **Last updated:** 2026-10-14
+**Version:** 1.2.0 · **Last updated:** 2026-10-19
+
+Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 A Markdown writing workshop with preview, export and locally saved documents.
 
@@ -19,7 +21,7 @@ MarkdownAtelier is a Markdown editor in a single HTML file, with side-by-side pr
 - Editor ("Editor") and preview ("Preview"), with optional synchronized scrolling and "Focus mode".
 - Formatting bar (H1, H2, H3, B, I etc.), word, character and reading-minute counter, "Line : column" indicator.
 - Syntax: headings, bold, italic, strikethrough, ==highlight==, inline code, ~sub~, ^sup^, lists and checklists, quotes, GFM tables, footnotes, code blocks with language, equations `$inline$` and `$$block$$` (LaTeX converted to native MathML), automatic table of contents `[[toc]]`, collapsible details `::: details`.
-- Settings: theme, interface language (English, Română, Français, Italiano, Español, Português, Deutsch), word wrap, line numbers, auto-numbering of headings in the table of contents, smart typography, emoji codes (`:rocket:` becomes 🚀), text size.
+- Settings: theme, interface language (English, Română, Français, Italiano, Español, Português, Deutsch, Magyar), word wrap, line numbers, auto-numbering of headings in the table of contents, smart typography, emoji codes (`:rocket:` becomes 🚀), text size.
 - Documents: "Import .md", "＋ New document", a document list with search (in titles and text), "Backup .json" (all documents in one file) and "Restore" (adds the documents from a backup, without overwriting the existing ones).
 - On first run, with no saved settings, the application chooses the dark "midnight" theme if the system prefers it.
 - Export: .md, self-contained .html, PDF (print), "Copy HTML to clipboard"; table-of-contents panel and syntax help.
@@ -35,7 +37,7 @@ MarkdownAtelier is a Markdown editor in a single HTML file, with side-by-side pr
 ### Limits
 - Personal-data detection is heuristic: it may miss or wrongly flag items. It does not replace your own check before publishing a text.
 - Only the Markdown text is scanned, not images or files attached via data-URI.
-- The translations of the new texts in fr/it/es/pt/de are automatic and **not natively verified**; the application has no Hungarian interface, so there is no hu text.
+- The translations of the new texts in fr/it/es/pt/de/hu are automatic and **not natively verified**.
 
 **FFF kit.** From `fff-kit` (pasted into `index.html`, no network) the modules `core, label, bundle, pii, search` are used. The CSP policy has **not been changed** apart from the `sha256` hashes of the inline scripts (the style of the personal-data dialog is injected into `<style>`, covered by the `style-src 'unsafe-inline'` already present; no new host).
 
@@ -90,4 +92,4 @@ Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf
 
 ## English summary
 
-MarkdownAtelier is a single-file Markdown editor with live preview, document manager, find/replace, LaTeX-to-MathML equations, tables, footnotes and export to .md, .html and PDF (via print). Documents are kept in the browser's localStorage. 7 UI languages. No network requests.
+MarkdownAtelier is a single-file Markdown editor with live preview, document manager, find/replace, LaTeX-to-MathML equations, tables, footnotes and export to .md, .html and PDF (via print). Documents are kept in the browser's localStorage. 8 UI languages. No network requests.

@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.1.0 · **Ultimo aggiornamento:** 2026-10-14
+**Versione:** 1.2.0 · **Ultimo aggiornamento:** 2026-10-19
+
+Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Laboratorio di scrittura Markdown con anteprima, esportazione e documenti salvati localmente.
 
@@ -19,7 +21,7 @@ MarkdownAtelier è un editor Markdown in un unico file HTML, con anteprima affia
 - Editor («Editor») e anteprima («Preview»), con scorrimento sincronizzato opzionale e «Modalità focus».
 - Barra di formattazione (H1, H2, H3, B, I ecc.), contatore di parole, caratteri e minuti di lettura, indicatore «Riga : colonna».
 - Sintassi: titoli, grassetto, corsivo, barrato, ==evidenziato==, codice inline, ~pedice~, ^apice^, elenchi e checklist, citazioni, tabelle GFM, note a piè di pagina, blocchi di codice con linguaggio, equazioni `$inline$` e `$$blocco$$` (LaTeX convertito in MathML nativo), indice automatico `[[toc]]`, dettagli comprimibili `::: details`.
-- Impostazioni: tema, lingua dell'interfaccia (English, Română, Français, Italiano, Español, Português, Deutsch), a capo automatico, numeri di riga, numerazione automatica dei titoli nell'indice, tipografia intelligente, codici emoji (`:rocket:` diventa 🚀), dimensione del testo.
+- Impostazioni: tema, lingua dell'interfaccia (English, Română, Français, Italiano, Español, Português, Deutsch, Magyar), a capo automatico, numeri di riga, numerazione automatica dei titoli nell'indice, tipografia intelligente, codici emoji (`:rocket:` diventa 🚀), dimensione del testo.
 - Documenti: «Importa .md», «＋ Nuovo documento», elenco di documenti con ricerca (nei titoli e nel testo), «Backup .json» (tutti i documenti in un file) e «Ripristina» (aggiunge i documenti da un backup, senza sovrascrivere quelli esistenti).
 - Alla prima esecuzione, senza impostazioni salvate, l'applicazione sceglie il tema scuro «midnight» se il sistema lo preferisce.
 - Esportazione: .md, .html autonomo, PDF (stampa), «Copia HTML negli appunti»; pannello dell'indice e aiuto sulla sintassi.
@@ -35,7 +37,7 @@ MarkdownAtelier è un editor Markdown in un unico file HTML, con anteprima affia
 ### Limiti
 - Il rilevamento dei dati personali è euristico: può non vedere o segnalare erroneamente. Non sostituisce la tua verifica prima di pubblicare un testo.
 - Viene analizzato solo il testo Markdown, non le immagini né i file allegati tramite data-URI.
-- Le traduzioni dei nuovi testi in fr/it/es/pt/de sono automatiche e **non verificate da madrelingua**; l'applicazione non ha un'interfaccia in ungherese, quindi non esiste testo hu.
+- Le traduzioni dei nuovi testi in fr/it/es/pt/de/hu sono automatiche e **non verificate da madrelingua**.
 
 **Kit FFF.** Dal `fff-kit` (incollato in `index.html`, senza rete) si usano `core, label, bundle, pii, search`. La politica CSP **non è stata modificata** a parte gli hash `sha256` degli script inline (lo stile della finestra dei dati personali è iniettato in `<style>`, coperto dallo `style-src 'unsafe-inline'` già presente; nessun nuovo host).
 
@@ -90,4 +92,4 @@ Alexio — Alexandru-Ionuț Chiuță, contatto: alexio@trom.tf
 
 ## English summary
 
-MarkdownAtelier is a single-file Markdown editor with live preview, document manager, find/replace, LaTeX-to-MathML equations, tables, footnotes and export to .md, .html and PDF (via print). Documents are kept in the browser's localStorage. 7 UI languages. No network requests.
+MarkdownAtelier is a single-file Markdown editor with live preview, document manager, find/replace, LaTeX-to-MathML equations, tables, footnotes and export to .md, .html and PDF (via print). Documents are kept in the browser's localStorage. 8 UI languages. No network requests.

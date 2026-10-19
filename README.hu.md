@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.1.0 · **Utolsó frissítés:** 2026-10-14
+**Verzió:** 1.2.0 · **Utolsó frissítés:** 2026-10-19
+
+A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Markdown-író műhely előnézettel, exporttal és helyben mentett dokumentumokkal.
 
@@ -19,7 +21,7 @@ A MarkdownAtelier egyetlen HTML-fájlból álló Markdown-szerkesztő, egymás m
 - Szerkesztő („Editor”) és előnézet („Preview”), opcionális szinkronizált görgetéssel és „Fókusz móddal”.
 - Formázósáv (H1, H2, H3, B, I stb.), szó-, karakter- és olvasási perc számláló, „Sor : oszlop” jelző.
 - Szintaxis: címsorok, félkövér, dőlt, áthúzott, ==kiemelt==, soron belüli kód, ~alsó index~, ^felső index^, listák és ellenőrzőlisták, idézetek, GFM-táblázatok, lábjegyzetek, nyelvmegjelöléses kódblokkok, `$soron belüli$` és `$$blokk$$` egyenletek (a LaTeX natív MathML-lé alakítva), automatikus tartalomjegyzék `[[toc]]`, összecsukható részletek `::: details`.
-- Beállítások: téma, a felület nyelve (English, Română, Français, Italiano, Español, Português, Deutsch), sortörés, sorszámok, a címsorok automatikus számozása a tartalomjegyzékben, intelligens tipográfia, emoji-kódok (a `:rocket:` 🚀 lesz), szövegméret.
+- Beállítások: téma, a felület nyelve (English, Română, Français, Italiano, Español, Português, Deutsch, Magyar), sortörés, sorszámok, a címsorok automatikus számozása a tartalomjegyzékben, intelligens tipográfia, emoji-kódok (a `:rocket:` 🚀 lesz), szövegméret.
 - Dokumentumok: „.md importálása”, „＋ Új dokumentum”, dokumentumlista kereséssel (a címekben és a szövegben), „Backup .json” (az összes dokumentum egy fájlban) és „Visszaállítás” (hozzáadja a mentésben lévő dokumentumokat, a meglévőket nem írja felül).
 - Első futtatáskor, mentett beállítások nélkül, az alkalmazás a „midnight” sötét témát választja, ha a rendszer azt részesíti előnyben.
 - Export: .md, önálló .html, PDF (nyomtatás), „HTML másolása a vágólapra”; tartalomjegyzék-panel és szintaxissúgó.
@@ -35,7 +37,7 @@ A MarkdownAtelier egyetlen HTML-fájlból álló Markdown-szerkesztő, egymás m
 ### Korlátok
 - A személyes adatok felismerése heurisztikus: kihagyhat vagy tévesen jelezhet. Nem helyettesíti az Ön saját ellenőrzését a szöveg közzététele előtt.
 - Csak a Markdown-szöveg kerül átvizsgálásra, a képek és a data-URI-val csatolt fájlok nem.
-- Az új szövegek fr/it/es/pt/de fordításai automatikusak, és **anyanyelvi ellenőrzés nélküliek**; az alkalmazásnak nincs magyar felülete, ezért hu szöveg sincs.
+- Az új szövegek fr/it/es/pt/de/hu fordításai automatikusak, és **anyanyelvi ellenőrzés nélküliek**.
 
 **FFF kit.** Az `fff-kit` (az `index.html`-be illesztve, hálózat nélkül) `core, label, bundle, pii, search` moduljai használatosak. A CSP-szabályzat **nem változott**, kivéve a beágyazott szkriptek `sha256` hashét (a személyes adatok párbeszédablakának stílusa a `<style>` elembe kerül, amelyet a már meglévő `style-src 'unsafe-inline'` lefed; új gazdagép nincs).
 
@@ -90,4 +92,4 @@ Alexio — Alexandru-Ionuț Chiuță, kapcsolat: alexio@trom.tf
 
 ## English summary
 
-MarkdownAtelier is a single-file Markdown editor with live preview, document manager, find/replace, LaTeX-to-MathML equations, tables, footnotes and export to .md, .html and PDF (via print). Documents are kept in the browser's localStorage. 7 UI languages. No network requests.
+MarkdownAtelier is a single-file Markdown editor with live preview, document manager, find/replace, LaTeX-to-MathML equations, tables, footnotes and export to .md, .html and PDF (via print). Documents are kept in the browser's localStorage. 8 UI languages. No network requests.
