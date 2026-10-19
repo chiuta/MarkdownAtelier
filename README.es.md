@@ -90,6 +90,6 @@ MIT — véase el archivo LICENSE
 
 Alexio — Alexandru-Ionuț Chiuță, contacto: alexio@trom.tf
 
-## English summary
+## Resumen
 
-MarkdownAtelier is a single-file Markdown editor with live preview, document manager, find/replace, LaTeX-to-MathML equations, tables, footnotes and export to .md, .html and PDF (via print). Documents are kept in the browser's localStorage. 8 UI languages. No network requests.
+MarkdownAtelier es un editor de Markdown de un único archivo con vista previa en vivo, gestor de documentos, buscar/reemplazar, ecuaciones de LaTeX a MathML, tablas, notas al pie y exportación a .md, .html y PDF (mediante impresión). Los documentos se conservan en el localStorage del navegador. Interfaz en 8 idiomas. Sin solicitudes de red.
