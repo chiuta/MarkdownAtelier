@@ -1,88 +1,90 @@
 # MarkdownAtelier
 
-**Versiune:** 1.1.0 · **Ultima actualizare:** 14 octombrie 2026
+**English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-Atelier de scriere Markdown cu previzualizare, export și documente salvate local.
+**Version:** 1.1.0 · **Last updated:** 2026-10-14
+
+A Markdown writing workshop with preview, export and locally saved documents.
 
 **Live:** https://chiuta.github.io/MarkdownAtelier/
 
-![Captura de ecran](screenshot.png)
+![Screenshot](screenshot.png)
 
-## Ce este
+## What it is
 
-MarkdownAtelier este un editor Markdown dintr-un singur fișier HTML, cu previzualizare în paralel, gestionar de documente, căutare/înlocuire și export în .md, .html și PDF (prin tipărire). Documentele rămân în browserul tău.
+MarkdownAtelier is a Markdown editor in a single HTML file, with side-by-side preview, a document manager, search/replace and export to .md, .html and PDF (via print). Your documents stay in your browser.
 
-## Funcții
+## Features
 
-- Editor („Editor") și previzualizare („Preview"), cu scroll sincronizat opțional și „Mod focus".
-- Bară de formatare (H1, H2, H3, B, I etc.), contor de cuvinte, caractere și minute de citire, indicator „Linia : coloana".
-- Sintaxă: titluri, bold, italic, tăiat, ==evidențiat==, cod inline, ~sub~, ^sup^, liste și checklist, citate, tabele GFM, note de subsol, blocuri de cod cu limbaj, ecuații `$inline$` și `$$bloc$$` (LaTeX convertit în MathML nativ), cuprins automat `[[toc]]`, detalii pliabile `::: details`.
-- Setări: temă, limba interfeței (English, Română, Français, Italiano, Español, Português, Deutsch), word wrap, numere de linie, auto-numerotare titluri în cuprins, tipografie inteligentă, coduri emoji (`:rocket:` devine 🚀), dimensiunea textului.
-- Documente: „Importă .md", „＋ Document nou", listă de documente cu căutare (în titluri și text), „Backup .json" (toate documentele într-un fișier) și „Restaurează" (adaugă documentele dintr-un backup, fără a le suprascrie pe cele existente).
-- La prima rulare, fără setări salvate, aplicația alege tema întunecată „midnight" dacă sistemul o preferă.
-- Export: .md, .html autoconținut, PDF (print), „Copiază HTML în clipboard"; panou de cuprins și ajutor cu sintaxa.
+- Editor ("Editor") and preview ("Preview"), with optional synchronized scrolling and "Focus mode".
+- Formatting bar (H1, H2, H3, B, I etc.), word, character and reading-minute counter, "Line : column" indicator.
+- Syntax: headings, bold, italic, strikethrough, ==highlight==, inline code, ~sub~, ^sup^, lists and checklists, quotes, GFM tables, footnotes, code blocks with language, equations `$inline$` and `$$block$$` (LaTeX converted to native MathML), automatic table of contents `[[toc]]`, collapsible details `::: details`.
+- Settings: theme, interface language (English, Română, Français, Italiano, Español, Português, Deutsch), word wrap, line numbers, auto-numbering of headings in the table of contents, smart typography, emoji codes (`:rocket:` becomes 🚀), text size.
+- Documents: "Import .md", "＋ New document", a document list with search (in titles and text), "Backup .json" (all documents in one file) and "Restore" (adds the documents from a backup, without overwriting the existing ones).
+- On first run, with no saved settings, the application chooses the dark "midnight" theme if the system prefers it.
+- Export: .md, self-contained .html, PDF (print), "Copy HTML to clipboard"; table-of-contents panel and syntax help.
 
-## Funcții noi (1.1.0)
+## New features (1.1.0)
 
-- **Verificare locală de date personale înainte de export sau copiere** (`FFF.pii`): la „↓ .md”, „↓ .html”, „🖨 PDF” și „Copiază HTML” (și la Ctrl+Shift+P), aplicația caută în browser e-mailuri, telefoane, IBAN (mod 97), CNP (cifră de control), carduri (Luhn), IP, chei/token-uri, adrese și nume (ultimele cu încredere scăzută). Dacă găsește ceva, nu exportă până alegi: „Maschează bifatele și continuă”, „Continuă fără mascare” sau „Anulează”. **Documentul din editor nu este modificat**: se exportă doar o copie mascată. Opțiunea se poate opri din panoul Export (preferința se păstrează).
-- **„🛡 Verifică acum documentul”** (panoul Export): scanează documentul curent; dacă găsește date personale, poți crea un **document nou** cu ele mascate (originalul rămâne neatins).
-- **Căutare locală după sens în documente** (`FFF.search`: BM25, normalizare de diacritice, forme apropiate, fragmente evidențiate; fără rețea). Înlocuiește potrivirea simplă de subșir, cu aceeași interfață; dacă kitul lipsește, se folosește varianta veche.
-- **Indicator de confidențialitate** în panoul „Documente”: documentele rămân pe dispozitiv, aplicația nu face cereri de rețea (CSP: `default-src 'self'`, fără `connect-src`; verificat în test: 0 cereri). Eticheta de transparență (apasă versiunea din „Despre”) oferă export/import/ștergere `.fff.json` cu criptare opțională cu parolă (AES-GCM, PBKDF2).
-- **Accesibilitate:** ferestrele modale au acum `role="dialog"`, `aria-modal` și nume, iar notificarea (`#toast`) este regiune `status`; axe-core: 0 violări (înainte, panoul Export avea o violare „region”).
+- **Local check for personal data before export or copy** (`FFF.pii`): on "↓ .md", "↓ .html", "🖨 PDF" and "Copy HTML" (and on Ctrl+Shift+P), the application searches in the browser for e-mails, phone numbers, IBANs (mod 97), CNPs (check digit), cards (Luhn), IPs, keys/tokens, addresses and names (the latter with low confidence). If it finds anything, it does not export until you choose: "Mask the checked ones and continue", "Continue without masking" or "Cancel". **The document in the editor is not modified**: only a masked copy is exported. The option can be turned off from the Export panel (the preference is kept).
+- **"🛡 Check the document now"** (Export panel): scans the current document; if it finds personal data, you can create a **new document** with it masked (the original stays untouched).
+- **Local meaning-based search across documents** (`FFF.search`: BM25, diacritics normalization, close forms, highlighted snippets; no network). It replaces the simple substring match, with the same interface; if the kit is missing, the old variant is used.
+- **Privacy indicator** in the "Documents" panel: the documents stay on the device, the application makes no network requests (CSP: `default-src 'self'`, no `connect-src`; verified in tests: 0 requests). The transparency label (press the version in "About") offers `.fff.json` export/import/deletion with optional password encryption (AES-GCM, PBKDF2).
+- **Accessibility:** the modal windows now have `role="dialog"`, `aria-modal` and a name, and the notification (`#toast`) is a `status` region; axe-core: 0 violations (before, the Export panel had one "region" violation).
 
-### Limite
-- Detecția de date personale este euristică: poate rata sau semnala greșit. Nu înlocuiește verificarea ta înainte de a publica un text.
-- Se scanează doar textul Markdown, nu imaginile sau fișierele atașate prin data-URI.
-- Traducerile textelor noi în fr/it/es/pt/de sunt automate și **neverificate nativ**; aplicația nu are interfață în maghiară, deci nu există text hu.
+### Limits
+- Personal-data detection is heuristic: it may miss or wrongly flag items. It does not replace your own check before publishing a text.
+- Only the Markdown text is scanned, not images or files attached via data-URI.
+- The translations of the new texts in fr/it/es/pt/de are automatic and **not natively verified**; the application has no Hungarian interface, so there is no hu text.
 
-**Kit FFF.** Din `fff-kit` (lipit în `index.html`, fără rețea) se folosesc `core, label, bundle, pii, search`. Politica CSP **nu a fost schimbată** în afară de hash-urile `sha256` ale scripturilor inline (stilul dialogului de date personale este injectat în `<style>`, acoperit de `style-src 'unsafe-inline'` deja prezent; nicio gazdă nouă).
+**FFF kit.** From `fff-kit` (pasted into `index.html`, no network) the modules `core, label, bundle, pii, search` are used. The CSP policy has **not been changed** apart from the `sha256` hashes of the inline scripts (the style of the personal-data dialog is injected into `<style>`, covered by the `style-src 'unsafe-inline'` already present; no new host).
 
-## Manual de utilizare
+## User guide
 
-Scurtături de tastatură (afișate în aplicație):
+Keyboard shortcuts (shown in the application):
 
-- Ctrl B îngroșat, Ctrl I italic, Ctrl K link, Ctrl ` cod inline
-- Ctrl F caută / înlocuiește
-- Ctrl S salvează
+- Ctrl B bold, Ctrl I italic, Ctrl K link, Ctrl ` inline code
+- Ctrl F find / replace
+- Ctrl S save
 - Ctrl E export
-- Ctrl O documente
-- Ctrl Alt N document nou
-- Tab indentare
+- Ctrl O documents
+- Ctrl Alt N new document
+- Tab indent
 
-Pași:
+Steps:
 
-1. Scrie în panoul „Sursă Markdown"; previzualizarea apare alături; comutatoarele ✍️ Editor și 👁️ Preview aleg panoul afișat.
-2. Gestionează documentele din „Documente" (Ctrl O): „Importă .md" sau „＋ Document nou".
-3. Exportă din „Export" (Ctrl E): „↓ .md", „↓ .html", „🖨 PDF" (se alege „Salvează ca PDF" în dialogul de tipărire) sau „⧉ Copiază".
-4. Ajustează tema, limba și opțiunile din „Setări".
-5. Pentru a șterge tot ce a salvat aplicația, folosește „Șterge toate datele" din Setări.
+1. Write in the "Markdown source" panel; the preview appears alongside; the ✍️ Editor and 👁️ Preview toggles choose the displayed panel.
+2. Manage documents from "Documents" (Ctrl O): "Import .md" or "＋ New document".
+3. Export from "Export" (Ctrl E): "↓ .md", "↓ .html", "🖨 PDF" (choose "Save as PDF" in the print dialog) or "⧉ Copy".
+4. Adjust the theme, language and options in "Settings".
+5. To delete everything the application has saved, use "Delete all data" in Settings.
 
-## Confidențialitate și rețea
+## Privacy and network
 
-- Documentele și setările se păstrează în `localStorage` (chei `markdownatelier.v1` și `markdownatelier.settings.v1`); indicatorul „Salvat local" arată starea.
-- Politica CSP nu mai permite scripturi inline arbitrare (`script-src` pe hash SHA-256, fără `'unsafe-inline'`).
-- Aplicația nu face cereri de rețea (fără `fetch`, CDN sau scripturi externe). Conține doar link-uri, deschise la click, către Buy Me a Coffee și chiuta.github.io.
-- Datele nu se sincronizează între dispozitive; pentru backup exportă fișierele.
+- Documents and settings are kept in `localStorage` (keys `markdownatelier.v1` and `markdownatelier.settings.v1`); the "Saved locally" indicator shows the status.
+- The CSP policy no longer allows arbitrary inline scripts (`script-src` by SHA-256 hash, no `'unsafe-inline'`).
+- The application makes no network requests (no `fetch`, CDN or external scripts). It contains only links, opened on click, to Buy Me a Coffee and chiuta.github.io.
+- Data is not synchronized between devices; for backup, export the files.
 
-## Rulare locală / offline
+## Local / offline use
 
-Descarcă `index.html` și deschide-l în browser; nu necesită internet.
+Download `index.html` and open it in a browser; no internet required.
 
-## Istoric / Changelog
+## History / Changelog
 
-- **1.1.0 — 2026-10-14:** verificare locală de date personale înainte de export/copiere (`FFF.pii`), „Verifică acum” cu document nou mascat, căutare locală după sens (`FFF.search`), indicator de confidențialitate, etichetă de transparență și copie criptată (`FFF.bundle`), `role="dialog"` pe ferestre; teste în `tests/fff-r8.test.mjs`.
-- 1.0.0 — 2026-10-12: versiunea și data ultimei actualizări sunt afișate în aplicație
-- Runda 7: `~sub~` funcționează și în mijlocul cuvintelor (H~2~O, CO~2~); un document nou primește automat titlul primului titlu Markdown (`# ...`) cât timp titlul nu a fost editat manual; contrast mai bun pentru textul ~~tăiat~~.
-- Pe ecrane înguste (360 px) bara de sus și bara de stare nu mai depășesc ecranul; titlul documentului trece pe rând separat, iar butonul Setări este vizibil.
-- Comutatorul „Editor / Preview" apare acum pe mobil (era ascuns de o regulă CSS suprascrisă).
-- Documente: căutare în titluri/conținut, Backup .json și Restaurează (cu validare și mesaj de eroare); temă întunecată implicită la prima rulare dacă sistemul o preferă; CSP `script-src` pe hash în loc de `'unsafe-inline'`.
-- Adăugat titlu de nivel 1 (ascuns vizual) pentru cititoarele de ecran; verificare axe-core: 0 violări la 1280 și 360 px.
+- **1.1.0 — 2026-10-14:** local check for personal data before export/copy (`FFF.pii`), "Check now" with a new masked document, local meaning-based search (`FFF.search`), privacy indicator, transparency label and encrypted backup (`FFF.bundle`), `role="dialog"` on windows; tests in `tests/fff-r8.test.mjs`.
+- 1.0.0 — 2026-10-12: the version and the date of the last update are shown in the application
+- Round 7: `~sub~` also works in the middle of words (H~2~O, CO~2~); a new document automatically gets the title of the first Markdown heading (`# ...`) as long as the title has not been edited manually; better contrast for ~~strikethrough~~ text.
+- On narrow screens (360 px) the top bar and the status bar no longer overflow the screen; the document title moves to a separate row, and the Settings button is visible.
+- The "Editor / Preview" toggle now appears on mobile (it was hidden by an overridden CSS rule).
+- Documents: search in titles/content, Backup .json and Restore (with validation and an error message); dark theme by default on first run if the system prefers it; CSP `script-src` by hash instead of `'unsafe-inline'`.
+- Added a level-1 heading (visually hidden) for screen readers; axe-core check: 0 violations at 1280 and 360 px.
 
-## Licență
+## License
 
-MIT — vezi fișierul LICENSE
+MIT — see the LICENSE file
 
-## Autor
+## Author
 
 Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf
 
