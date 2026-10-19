@@ -10,7 +10,7 @@ Taller de escritura Markdown con vista previa, exportación y documentos guardad
 
 **En línea:** https://chiuta.github.io/MarkdownAtelier/
 
-![Captura de pantalla](screenshot.png)
+![Captura de pantalla](screenshot.es.png)
 
 ## Qué es
 

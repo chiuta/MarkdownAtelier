@@ -10,7 +10,7 @@ Markdown-író műhely előnézettel, exporttal és helyben mentett dokumentumok
 
 **Élő változat:** https://chiuta.github.io/MarkdownAtelier/
 
-![Képernyőkép](screenshot.png)
+![Képernyőkép](screenshot.hu.png)
 
 ## Mi ez
 

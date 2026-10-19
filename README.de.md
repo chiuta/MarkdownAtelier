@@ -10,7 +10,7 @@ Markdown-Schreibwerkstatt mit Vorschau, Export und lokal gespeicherten Dokumente
 
 **Online:** https://chiuta.github.io/MarkdownAtelier/
 
-![Screenshot](screenshot.png)
+![Screenshot](screenshot.de.png)
 
 ## Was es ist
 

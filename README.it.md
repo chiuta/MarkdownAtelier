@@ -10,7 +10,7 @@ Laboratorio di scrittura Markdown con anteprima, esportazione e documenti salvat
 
 **Online:** https://chiuta.github.io/MarkdownAtelier/
 
-![Schermata](screenshot.png)
+![Schermata](screenshot.it.png)
 
 ## Cos'è
 

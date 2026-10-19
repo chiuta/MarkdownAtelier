@@ -10,7 +10,7 @@ A Markdown writing workshop with preview, export and locally saved documents.
 
 **Live:** https://chiuta.github.io/MarkdownAtelier/
 
-![Screenshot](screenshot.png)
+![Screenshot](screenshot.en.png)
 
 ## What it is
 

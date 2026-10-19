@@ -10,7 +10,7 @@ Atelier de scriere Markdown cu previzualizare, export și documente salvate loca
 
 **Live:** https://chiuta.github.io/MarkdownAtelier/
 
-![Captura de ecran](screenshot.png)
+![Captura de ecran](screenshot.ro.png)
 
 ## Ce este
 

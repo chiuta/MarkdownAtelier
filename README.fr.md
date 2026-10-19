@@ -10,7 +10,7 @@ Atelier d'écriture Markdown avec aperçu, export et documents enregistrés loca
 
 **En ligne :** https://chiuta.github.io/MarkdownAtelier/
 
-![Capture d'écran](screenshot.png)
+![Capture d'écran](screenshot.fr.png)
 
 ## De quoi s'agit-il
 
