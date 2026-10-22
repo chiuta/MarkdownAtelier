@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.1 · **Utolsó frissítés:** 2026-10-19
+**Verzió:** 1.2.2 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -33,6 +33,9 @@ A MarkdownAtelier egyetlen HTML-fájlból álló Markdown-szerkesztő, egymás m
 - **Helyi jelentés szerinti keresés a dokumentumokban** (`FFF.search`: BM25, ékezetek normalizálása, közeli alakok, kiemelt részletek; hálózat nélkül). Az egyszerű részlánc-egyezést váltja fel, ugyanazzal a felülettel; ha a kit hiányzik, a régi változat használatos.
 - **Adatvédelmi jelző** a „Dokumentumok” panelen: a dokumentumok az eszközön maradnak, az alkalmazás nem végez hálózati kéréseket (CSP: `default-src 'self'`, `connect-src` nélkül; tesztben ellenőrizve: 0 kérés). Az átláthatósági címke (nyomja meg a verziót a „Névjegy” alatt) `.fff.json` exportot/importot/törlést kínál opcionális jelszavas titkosítással (AES-GCM, PBKDF2).
 - **Akadálymentesség:** a modális ablakok mostantól `role="dialog"`, `aria-modal` attribútumot és nevet kaptak, az értesítés (`#toast`) pedig `status` régió; axe-core: 0 szabálysértés (korábban az Export panelen egy „region” szabálysértés volt).
+
+### 1.2.2 — 2026-10-22
+- Az eszköztár és a keresés súgószövegei, a hozzáférhetőségi feliratok, a szerkesztő helyőrzője, a szintaxissúgó, a kódblokk-gombok, valamint az oldal címe és leírása minden nyelven le van fordítva; a módosítatlan üdvözlő dokumentum követi a felület nyelvét.
 
 ### Korlátok
 - A személyes adatok felismerése heurisztikus: kihagyhat vagy tévesen jelezhet. Nem helyettesíti az Ön saját ellenőrzését a szöveg közzététele előtt.

@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.1 · **Última atualização:** 2026-10-19
+**Versão:** 1.2.2 · **Última atualização:** 2026-10-22
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -33,6 +33,9 @@ O MarkdownAtelier é um editor Markdown num único ficheiro HTML, com pré-visua
 - **Pesquisa local por significado nos documentos** (`FFF.search`: BM25, normalização de diacríticos, formas próximas, excertos realçados; sem rede). Substitui a simples correspondência de subcadeia, com a mesma interface; se o kit faltar, usa-se a variante antiga.
 - **Indicador de privacidade** no painel «Documentos»: os documentos ficam no dispositivo, a aplicação não faz pedidos de rede (CSP: `default-src 'self'`, sem `connect-src`; verificado em teste: 0 pedidos). A etiqueta de transparência (carregue na versão em «Acerca de») oferece exportação/importação/eliminação `.fff.json` com cifragem opcional por palavra-passe (AES-GCM, PBKDF2).
 - **Acessibilidade:** as janelas modais têm agora `role="dialog"`, `aria-modal` e um nome, e a notificação (`#toast`) é uma região `status`; axe-core: 0 violações (antes, o painel Exportar tinha uma violação «region»).
+
+### 1.2.2 — 2026-10-22
+- As dicas da barra de ferramentas e da pesquisa, as etiquetas de acessibilidade, o texto de ajuda do editor, a ajuda de sintaxe, os botões dos blocos de código e o título/a descrição da página estão traduzidos em todos os idiomas; o documento de boas-vindas não modificado segue o idioma da interface.
 
 ### Limites
 - A deteção de dados pessoais é heurística: pode não detetar ou assinalar por engano. Não substitui a sua verificação antes de publicar um texto.

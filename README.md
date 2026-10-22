@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.1 · **Last updated:** 2026-10-19
+**Version:** 1.2.2 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -33,6 +33,9 @@ MarkdownAtelier is a Markdown editor in a single HTML file, with side-by-side pr
 - **Local meaning-based search across documents** (`FFF.search`: BM25, diacritics normalization, close forms, highlighted snippets; no network). It replaces the simple substring match, with the same interface; if the kit is missing, the old variant is used.
 - **Privacy indicator** in the "Documents" panel: the documents stay on the device, the application makes no network requests (CSP: `default-src 'self'`, no `connect-src`; verified in tests: 0 requests). The transparency label (press the version in "About") offers `.fff.json` export/import/deletion with optional password encryption (AES-GCM, PBKDF2).
 - **Accessibility:** the modal windows now have `role="dialog"`, `aria-modal` and a name, and the notification (`#toast`) is a `status` region; axe-core: 0 violations (before, the Export panel had one "region" violation).
+
+### 1.2.2 — 2026-10-22
+- Toolbar and search tooltips, accessibility labels, editor placeholder, syntax help, code-block buttons and the page title/description are now translated into all languages; the unmodified welcome document follows the interface language.
 
 ### Limits
 - Personal-data detection is heuristic: it may miss or wrongly flag items. It does not replace your own check before publishing a text.
