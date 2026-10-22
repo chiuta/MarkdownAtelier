@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.5 · **Ultimo aggiornamento:** 2026-10-22
+**Versione:** 1.2.6 · **Ultimo aggiornamento:** 2026-10-22
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Passi:
 Scarica `index.html` e aprilo in un browser; non richiede Internet.
 
 ## Storico / Changelog
+
+### 1.2.6 — 2026-10-22
+
+fff-kit 1.1.4: aree tattili e testo minimo. Aree tattili/testo corretti nell’app.
 
 ### 1.2.5 — 2026-10-22
 

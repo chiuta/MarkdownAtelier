@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.2.5 · **Última actualización:** 2026-10-22
+**Versión:** 1.2.6 · **Última actualización:** 2026-10-22
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Pasos:
 Descarga `index.html` y ábrelo en un navegador; no requiere internet.
 
 ## Historial / Changelog
+
+### 1.2.6 — 2026-10-22
+
+fff-kit 1.1.4: áreas táctiles y texto mínimo. Áreas táctiles/texto corregidos en la aplicación.
 
 ### 1.2.5 — 2026-10-22
 

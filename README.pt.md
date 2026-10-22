@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.5 · **Última atualização:** 2026-10-22
+**Versão:** 1.2.6 · **Última atualização:** 2026-10-22
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -82,6 +82,10 @@ Passos:
 Transfira `index.html` e abra-o num navegador; não necessita de internet.
 
 ## Histórico / Changelog
+
+### 1.2.6 — 2026-10-22
+
+fff-kit 1.1.4: áreas de toque e texto mínimo. Áreas de toque/texto corrigidos na aplicação.
 
 ### 1.2.5 — 2026-10-22
 
