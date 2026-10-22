@@ -29,8 +29,8 @@ const TXT='# Raport\n\nContact: ion.popescu@example.com\nIBAN: RO49AAAA1B3100759
 { const {ctx,p,errs,reqs}=await open();
   ok(errs.length===0,'pornire fără erori/CSP: '+errs.join(' | '));
   ok(reqs.length===0,'0 cereri de rețea la pornire');
-  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.2.4'),'versiune în meta');
-  ok((await p.textContent('#app-version')).includes('v 1.2.4 · 2026-10-22'),'text #app-version');
+  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.2.5'),'versiune în meta');
+  ok((await p.textContent('#app-version')).includes('v 1.2.5 · 2026-10-22'),'text #app-version');
   ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'fără depășire orizontală 1280');
   await axe(p,'start');
   await p.click('#btnExport'); await p.waitForSelector('#scrimExport.show');

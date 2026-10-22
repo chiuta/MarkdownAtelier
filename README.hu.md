@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.4 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.2.5 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Lépések:
 Töltse le az `index.html` fájlt, és nyissa meg böngészőben; internet nem szükséges.
 
 ## Előzmények / Changelog
+
+### 1.2.5 — 2026-10-22
+
+fff-kit 1.1.2: PBKDF2 600 000 iterációval, clickjacking elleni védelem.
 
 ### 1.2.4 — 2026-10-22
 - Oldalanként egyetlen H1: a dokumentum „# Cím” sora az előnézetben azonos kinézetű H2-ként jelenik meg.

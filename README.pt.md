@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.4 · **Última atualização:** 2026-10-22
+**Versão:** 1.2.5 · **Última atualização:** 2026-10-22
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -82,6 +82,10 @@ Passos:
 Transfira `index.html` e abra-o num navegador; não necessita de internet.
 
 ## Histórico / Changelog
+
+### 1.2.5 — 2026-10-22
+
+fff-kit 1.1.2: PBKDF2 com 600.000 iterações, proteção anti-clickjacking.
 
 - **1.2.3 — 2026-10-22:** os botões «Substituir» e «Tudo» da barra de pesquisa e a etiqueta de acessibilidade do seletor de idioma estão agora traduzidos em todos os idiomas (sem restos em romeno).
 - **1.1.0 — 2026-10-14:** verificação local de dados pessoais antes de exportar/copiar (`FFF.pii`), «Verificar já» com documento novo mascarado, pesquisa local por significado (`FFF.search`), indicador de privacidade, etiqueta de transparência e cópia cifrada (`FFF.bundle`), `role="dialog"` nas janelas; testes em `tests/fff-r8.test.mjs`.
