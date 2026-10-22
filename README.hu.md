@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.7 · **Utolsó frissítés:** 2026-10-23
+**Verzió:** 1.2.8 · **Utolsó frissítés:** 2026-10-23
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Lépések:
 Töltse le az `index.html` fájlt, és nyissa meg böngészőben; internet nem szükséges.
 
 ## Előzmények / Changelog
+
+### 1.2.8 — 2026-10-23
+
+- fff-kit 1.2.0 audit: az i18n-paritás figyelmeztetés téves riasztás (a kulcsok futásidőben egészülnek ki); indokolt kivételként dokumentálva az `fff.config.json` fájlban. Funkcionális változás nincs.
 
 ### 1.2.6 — 2026-10-22
 

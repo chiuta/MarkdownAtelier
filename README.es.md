@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.2.7 · **Última actualización:** 2026-10-23
+**Versión:** 1.2.8 · **Última actualización:** 2026-10-23
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Pasos:
 Descarga `index.html` y ábrelo en un navegador; no requiere internet.
 
 ## Historial / Changelog
+
+### 1.2.8 — 2026-10-23
+
+- Auditoría fff-kit 1.2.0: el aviso de paridad i18n es un falso positivo (las claves se completan en tiempo de ejecución); documentado como excepción justificada en `fff.config.json`. Sin cambios funcionales.
 
 ### 1.2.6 — 2026-10-22
 

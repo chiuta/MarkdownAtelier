@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.2.7 · **Zuletzt aktualisiert:** 2026-10-23
+**Version:** 1.2.8 · **Zuletzt aktualisiert:** 2026-10-23
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Schritte:
 Laden Sie `index.html` herunter und öffnen Sie sie in einem Browser; kein Internet erforderlich.
 
 ## Verlauf / Changelog
+
+### 1.2.8 — 2026-10-23
+
+- fff-kit-1.2.0-Audit: Die i18n-Paritätswarnung ist ein Fehlalarm (die Schlüssel werden zur Laufzeit ergänzt); als begründete Ausnahme in `fff.config.json` dokumentiert. Keine funktionale Änderung.
 
 ### 1.2.6 — 2026-10-22
 

@@ -1,0 +1,1 @@
+{"exceptions":[{"rule":"i18n-parity","reason":"Falsă alarmă: cheile noDocs, docsearch, backup, restore etc. se completează la rulare pentru fr/it/es/pt/de/hu prin Object.assign(I18N.xx, …) după dicționarul principal."}]}

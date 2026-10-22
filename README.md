@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.7 · **Last updated:** 2026-10-23
+**Version:** 1.2.8 · **Last updated:** 2026-10-23
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Steps:
 Download `index.html` and open it in a browser; no internet required.
 
 ## History / Changelog
+
+### 1.2.8 — 2026-10-23
+
+- fff-kit 1.2.0 audit: the i18n-parity warning is a false positive (the keys are completed at run time); documented as a justified exception in `fff.config.json`. No functional change.
 
 ### 1.2.6 — 2026-10-22
 
