@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.3 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.2.4 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,12 @@ Lépések:
 Töltse le az `index.html` fájlt, és nyissa meg böngészőben; internet nem szükséges.
 
 ## Előzmények / Changelog
+
+### 1.2.4 — 2026-10-22
+- Oldalanként egyetlen H1: a dokumentum „# Cím” sora az előnézetben azonos kinézetű H2-ként jelenik meg.
+- Keskeny képernyőn a formázósáv több sorba tördelődik ahelyett, hogy oldalra levágódna; a gombok nagyobbak (36 px).
+- A natív confirm() ablakokat (dokumentum törlése, mindent töröl) lefordított, akadálymentes párbeszédablak váltotta fel.
+- Mobil: nincs 12 px alatti szöveg, az érintési célpontok legalább 24 px-esek (WCAG 2.5.8).
 
 - **1.2.3 — 2026-10-22:** a keresősáv „Csere” és „Mind” gombjai, valamint a nyelvválasztó hozzáférhetőségi címkéje mostantól minden nyelven le van fordítva (nincs több román maradvány).
 - **1.1.0 — 2026-10-14:** személyes adatok helyi ellenőrzése export/másolás előtt (`FFF.pii`), „Ellenőrzés most” új, maszkolt dokumentummal, helyi jelentés szerinti keresés (`FFF.search`), adatvédelmi jelző, átláthatósági címke és titkosított mentés (`FFF.bundle`), `role="dialog"` az ablakokon; tesztek a `tests/fff-r8.test.mjs` fájlban.

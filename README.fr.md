@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.2.3 · **Dernière mise à jour :** 2026-10-22
+**Version :** 1.2.4 · **Dernière mise à jour :** 2026-10-22
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,12 @@ Raccourcis clavier (affichés dans l'application) :
 Téléchargez `index.html` et ouvrez-le dans un navigateur ; aucune connexion Internet n'est nécessaire.
 
 ## Historique / Changelog
+
+### 1.2.4 — 2026-10-22
+- Un seul H1 par page : un « # Titre » du document apparaît dans l'aperçu comme un H2 d'aspect identique.
+- Sur écran étroit, la barre de mise en forme passe à la ligne au lieu d'être coupée sur le côté ; ses boutons sont plus grands (36 px).
+- Les boîtes confirm() natives (supprimer un document, tout effacer) sont remplacées par un dialogue accessible et traduit.
+- Mobile : aucun texte sous 12 px et cibles tactiles d'au moins 24 px (WCAG 2.5.8).
 
 - **1.2.3 — 2026-10-22:** les boutons « Remplacer » et « Tout » de la barre de recherche et l'étiquette d'accessibilité du sélecteur de langue sont désormais traduits dans toutes les langues (plus de reste en roumain).
 - **1.1.0 — 2026-10-14 :** vérification locale des données personnelles avant export/copie (`FFF.pii`), « Vérifier maintenant » avec nouveau document masqué, recherche locale par sens (`FFF.search`), indicateur de confidentialité, étiquette de transparence et sauvegarde chiffrée (`FFF.bundle`), `role="dialog"` sur les fenêtres ; tests dans `tests/fff-r8.test.mjs`.

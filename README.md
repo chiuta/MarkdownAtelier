@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.3 · **Last updated:** 2026-10-22
+**Version:** 1.2.4 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,12 @@ Steps:
 Download `index.html` and open it in a browser; no internet required.
 
 ## History / Changelog
+
+### 1.2.4 — 2026-10-22
+- A single H1 per page: a "# Title" in the document is shown in the preview as an H2 with the same look.
+- On narrow screens the formatting toolbar wraps instead of being clipped sideways; its buttons are larger (36 px).
+- The native confirm() dialogs (delete a document, erase everything) were replaced by a translated accessible dialog.
+- Mobile: no text below 12 px and touch targets of at least 24 px (WCAG 2.5.8).
 
 - **1.2.3 — 2026-10-22:** the "Replace" and "All" buttons of the search bar and the language selector's accessibility label are now translated into all languages (no more Romanian leftovers).
 - **1.1.0 — 2026-10-14:** local check for personal data before export/copy (`FFF.pii`), "Check now" with a new masked document, local meaning-based search (`FFF.search`), privacy indicator, transparency label and encrypted backup (`FFF.bundle`), `role="dialog"` on windows; tests in `tests/fff-r8.test.mjs`.

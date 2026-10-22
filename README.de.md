@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.2.3 · **Zuletzt aktualisiert:** 2026-10-22
+**Version:** 1.2.4 · **Zuletzt aktualisiert:** 2026-10-22
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,12 @@ Schritte:
 Laden Sie `index.html` herunter und öffnen Sie sie in einem Browser; kein Internet erforderlich.
 
 ## Verlauf / Changelog
+
+### 1.2.4 — 2026-10-22
+- Nur ein H1 pro Seite: Ein „# Titel“ im Dokument erscheint in der Vorschau als H2 mit gleichem Aussehen.
+- Auf schmalen Bildschirmen bricht die Formatierungsleiste um, statt seitlich abgeschnitten zu werden; die Schaltflächen sind größer (36 px).
+- Die nativen confirm()-Dialoge (Dokument löschen, alles löschen) wurden durch einen barrierefreien, übersetzten Dialog ersetzt.
+- Mobil: kein Text unter 12 px und Touch-Ziele von mindestens 24 px (WCAG 2.5.8).
 
 - **1.2.3 — 2026-10-22:** die Schaltflächen „Ersetzen“ und „Alle“ der Suchleiste sowie das Barrierefreiheits-Label der Sprachauswahl sind jetzt in alle Sprachen übersetzt (keine rumänischen Reste mehr).
 - **1.1.0 — 2026-10-14:** lokale Prüfung auf personenbezogene Daten vor Export/Kopieren (`FFF.pii`), „Jetzt prüfen“ mit neuem maskiertem Dokument, lokale Bedeutungssuche (`FFF.search`), Datenschutz-Anzeige, Transparenz-Label und verschlüsselte Sicherung (`FFF.bundle`), `role="dialog"` an den Fenstern; Tests in `tests/fff-r8.test.mjs`.

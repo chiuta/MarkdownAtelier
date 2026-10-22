@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.3 · **Ultimo aggiornamento:** 2026-10-22
+**Versione:** 1.2.4 · **Ultimo aggiornamento:** 2026-10-22
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,12 @@ Passi:
 Scarica `index.html` e aprilo in un browser; non richiede Internet.
 
 ## Storico / Changelog
+
+### 1.2.4 — 2026-10-22
+- Un solo H1 per pagina: un «# Titolo» del documento appare nell'anteprima come H2 con lo stesso aspetto.
+- Su schermi stretti la barra di formattazione va a capo invece di essere tagliata di lato; i pulsanti sono più grandi (36 px).
+- I confirm() nativi (elimina documento, cancella tutto) sono stati sostituiti da una finestra accessibile e tradotta.
+- Mobile: nessun testo sotto i 12 px e aree tattili di almeno 24 px (WCAG 2.5.8).
 
 - **1.2.3 — 2026-10-22:** i pulsanti «Sostituisci» e «Tutti» della barra di ricerca e l'etichetta di accessibilità del selettore di lingua sono ora tradotti in tutte le lingue (nessun residuo in rumeno).
 - **1.1.0 — 2026-10-14:** verifica locale dei dati personali prima di esportazione/copia (`FFF.pii`), «Verifica ora» con nuovo documento mascherato, ricerca locale per significato (`FFF.search`), indicatore di privacy, etichetta di trasparenza e copia cifrata (`FFF.bundle`), `role="dialog"` sulle finestre; test in `tests/fff-r8.test.mjs`.
