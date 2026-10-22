@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.2.2 · **Última actualización:** 2026-10-22
+**Versión:** 1.2.3 · **Última actualización:** 2026-10-22
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -77,6 +77,7 @@ Descarga `index.html` y ábrelo en un navegador; no requiere internet.
 
 ## Historial / Changelog
 
+- **1.2.3 — 2026-10-22:** los botones «Reemplazar» y «Todo» de la barra de búsqueda y la etiqueta de accesibilidad del selector de idioma ahora están traducidos a todos los idiomas (sin restos en rumano).
 - **1.1.0 — 2026-10-14:** comprobación local de datos personales antes de exportar/copiar (`FFF.pii`), «Comprobar ahora» con documento nuevo enmascarado, búsqueda local por significado (`FFF.search`), indicador de privacidad, etiqueta de transparencia y copia cifrada (`FFF.bundle`), `role="dialog"` en las ventanas; pruebas en `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: la versión y la fecha de la última actualización se muestran en la aplicación
 - Ronda 7: `~subíndice~` funciona también en medio de las palabras (H~2~O, CO~2~); un documento nuevo recibe automáticamente el título del primer encabezado Markdown (`# ...`) mientras el título no se haya editado a mano; mejor contraste para el texto ~~tachado~~.

@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.2 · **Ultimo aggiornamento:** 2026-10-22
+**Versione:** 1.2.3 · **Ultimo aggiornamento:** 2026-10-22
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -77,6 +77,7 @@ Scarica `index.html` e aprilo in un browser; non richiede Internet.
 
 ## Storico / Changelog
 
+- **1.2.3 — 2026-10-22:** i pulsanti «Sostituisci» e «Tutti» della barra di ricerca e l'etichetta di accessibilità del selettore di lingua sono ora tradotti in tutte le lingue (nessun residuo in rumeno).
 - **1.1.0 — 2026-10-14:** verifica locale dei dati personali prima di esportazione/copia (`FFF.pii`), «Verifica ora» con nuovo documento mascherato, ricerca locale per significato (`FFF.search`), indicatore di privacy, etichetta di trasparenza e copia cifrata (`FFF.bundle`), `role="dialog"` sulle finestre; test in `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: la versione e la data dell'ultimo aggiornamento sono mostrate nell'applicazione
 - Round 7: `~pedice~` funziona anche in mezzo alle parole (H~2~O, CO~2~); un nuovo documento riceve automaticamente il titolo del primo titolo Markdown (`# ...`) finché il titolo non è stato modificato a mano; contrasto migliore per il testo ~~barrato~~.

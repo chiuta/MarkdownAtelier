@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.2 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.2.3 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -77,6 +77,7 @@ Töltse le az `index.html` fájlt, és nyissa meg böngészőben; internet nem s
 
 ## Előzmények / Changelog
 
+- **1.2.3 — 2026-10-22:** a keresősáv „Csere” és „Mind” gombjai, valamint a nyelvválasztó hozzáférhetőségi címkéje mostantól minden nyelven le van fordítva (nincs több román maradvány).
 - **1.1.0 — 2026-10-14:** személyes adatok helyi ellenőrzése export/másolás előtt (`FFF.pii`), „Ellenőrzés most” új, maszkolt dokumentummal, helyi jelentés szerinti keresés (`FFF.search`), adatvédelmi jelző, átláthatósági címke és titkosított mentés (`FFF.bundle`), `role="dialog"` az ablakokon; tesztek a `tests/fff-r8.test.mjs` fájlban.
 - 1.0.0 — 2026-10-12: a verzió és az utolsó frissítés dátuma megjelenik az alkalmazásban
 - 7. kör: az `~alsó index~` szavak közepén is működik (H~2~O, CO~2~); az új dokumentum automatikusan megkapja az első Markdown-címsor (`# ...`) címét, amíg a címet kézzel nem szerkesztették; jobb kontraszt az ~~áthúzott~~ szövegnél.

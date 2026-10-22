@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.2 · **Last updated:** 2026-10-22
+**Version:** 1.2.3 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -77,6 +77,7 @@ Download `index.html` and open it in a browser; no internet required.
 
 ## History / Changelog
 
+- **1.2.3 — 2026-10-22:** the "Replace" and "All" buttons of the search bar and the language selector's accessibility label are now translated into all languages (no more Romanian leftovers).
 - **1.1.0 — 2026-10-14:** local check for personal data before export/copy (`FFF.pii`), "Check now" with a new masked document, local meaning-based search (`FFF.search`), privacy indicator, transparency label and encrypted backup (`FFF.bundle`), `role="dialog"` on windows; tests in `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: the version and the date of the last update are shown in the application
 - Round 7: `~sub~` also works in the middle of words (H~2~O, CO~2~); a new document automatically gets the title of the first Markdown heading (`# ...`) as long as the title has not been edited manually; better contrast for ~~strikethrough~~ text.

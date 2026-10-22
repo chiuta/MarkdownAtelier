@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.2.2 · **Zuletzt aktualisiert:** 2026-10-22
+**Version:** 1.2.3 · **Zuletzt aktualisiert:** 2026-10-22
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -77,6 +77,7 @@ Laden Sie `index.html` herunter und öffnen Sie sie in einem Browser; kein Inter
 
 ## Verlauf / Changelog
 
+- **1.2.3 — 2026-10-22:** die Schaltflächen „Ersetzen“ und „Alle“ der Suchleiste sowie das Barrierefreiheits-Label der Sprachauswahl sind jetzt in alle Sprachen übersetzt (keine rumänischen Reste mehr).
 - **1.1.0 — 2026-10-14:** lokale Prüfung auf personenbezogene Daten vor Export/Kopieren (`FFF.pii`), „Jetzt prüfen“ mit neuem maskiertem Dokument, lokale Bedeutungssuche (`FFF.search`), Datenschutz-Anzeige, Transparenz-Label und verschlüsselte Sicherung (`FFF.bundle`), `role="dialog"` an den Fenstern; Tests in `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12: Die Version und das Datum der letzten Aktualisierung werden in der Anwendung angezeigt
 - Runde 7: `~tiefgestellt~` funktioniert auch mitten in Wörtern (H~2~O, CO~2~); ein neues Dokument erhält automatisch den Titel der ersten Markdown-Überschrift (`# ...`), solange der Titel nicht manuell bearbeitet wurde; besserer Kontrast für ~~durchgestrichenen~~ Text.

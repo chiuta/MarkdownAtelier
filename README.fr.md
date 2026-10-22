@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.2.2 · **Dernière mise à jour :** 2026-10-22
+**Version :** 1.2.3 · **Dernière mise à jour :** 2026-10-22
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -77,6 +77,7 @@ Téléchargez `index.html` et ouvrez-le dans un navigateur ; aucune connexion In
 
 ## Historique / Changelog
 
+- **1.2.3 — 2026-10-22:** les boutons « Remplacer » et « Tout » de la barre de recherche et l'étiquette d'accessibilité du sélecteur de langue sont désormais traduits dans toutes les langues (plus de reste en roumain).
 - **1.1.0 — 2026-10-14 :** vérification locale des données personnelles avant export/copie (`FFF.pii`), « Vérifier maintenant » avec nouveau document masqué, recherche locale par sens (`FFF.search`), indicateur de confidentialité, étiquette de transparence et sauvegarde chiffrée (`FFF.bundle`), `role="dialog"` sur les fenêtres ; tests dans `tests/fff-r8.test.mjs`.
 - 1.0.0 — 2026-10-12 : la version et la date de la dernière mise à jour s'affichent dans l'application
 - Tour 7 : `~indice~` fonctionne aussi au milieu des mots (H~2~O, CO~2~) ; un nouveau document reçoit automatiquement le titre du premier titre Markdown (`# ...`) tant que le titre n'a pas été modifié à la main ; meilleur contraste pour le texte ~~barré~~.
