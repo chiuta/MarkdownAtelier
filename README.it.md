@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.8 · **Ultimo aggiornamento:** 2026-10-23
+**Versione:** 1.2.9 · **Ultimo aggiornamento:** 2026-10-23
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Passi:
 Scarica `index.html` e aprilo in un browser; non richiede Internet.
 
 ## Storico / Changelog
+
+### 1.2.9 — 2026-10-23
+
+- Markdown: l’URL di un link (`[a](https://site/_x_/y)`) veniva alterata dalle regole di enfasi (`_ * ~ ^ ==` diventavano `<em>`/`<sub>`/`<mark>` in `href`); i tag di apertura di link e immagini sono ora protetti. Nessuna XSS trovata.
 
 ### 1.2.8 — 2026-10-23
 

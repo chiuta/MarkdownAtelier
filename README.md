@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.8 · **Last updated:** 2026-10-23
+**Version:** 1.2.9 · **Last updated:** 2026-10-23
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Steps:
 Download `index.html` and open it in a browser; no internet required.
 
 ## History / Changelog
+
+### 1.2.9 — 2026-10-23
+
+- Markdown: the URL of a link (`[a](https://site/_x_/y)`) was mangled by the emphasis rules (`_ * ~ ^ ==` became `<em>`/`<sub>`/`<mark>` inside `href`); the opening tags of links and images are now protected. No XSS was found.
 
 ### 1.2.8 — 2026-10-23
 
