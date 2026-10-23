@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.8 · **Última atualização:** 2026-10-23
+**Versão:** 1.2.9 · **Última atualização:** 2026-10-23
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -82,6 +82,10 @@ Passos:
 Transfira `index.html` e abra-o num navegador; não necessita de internet.
 
 ## Histórico / Changelog
+
+### 1.2.9 — 2026-10-23
+
+- Markdown: o URL de uma ligação (`[a](https://site/_x_/y)`) era alterado pelas regras de ênfase (`_ * ~ ^ ==` tornavam-se `<em>`/`<sub>`/`<mark>` em `href`); as etiquetas de abertura de ligações e imagens estão agora protegidas. Não foi encontrada nenhuma XSS.
 
 ### 1.2.8 — 2026-10-23
 

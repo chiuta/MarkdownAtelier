@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.8 · **Ultima actualizare:** 2026-10-23
+**Versiune:** 1.2.9 · **Ultima actualizare:** 2026-10-23
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,10 @@ Pași:
 Descarcă `index.html` și deschide-l în browser; nu necesită internet.
 
 ## Istoric / Changelog
+
+### 1.2.9 — 2026-10-23
+
+- Markdown: URL-ul unui link (`[a](https://site/_x_/y)`) era alterat de regulile de emfază (`_ * ~ ^ ==` deveneau `<em>`/`<sub>`/`<mark>` în `href`); etichetele de deschidere ale linkurilor și imaginilor sunt acum protejate. Nu s-a găsit niciun XSS.
 
 ### 1.2.8 — 2026-10-23
 
