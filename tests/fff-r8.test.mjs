@@ -1,12 +1,19 @@
 // Teste pentru funcțiile noi din MarkdownAtelier 1.1.0 (runda 8): verificare locală de date personale înainte de export/copiere,
 // document nou cu date mascate (originalul rămâne), căutare locală „după sens” în documente, 0 cereri de rețea, copie criptată prin kit.
 // Rulează: node tests/fff-r8.test.mjs
+// [fff-portable] axe-core: FFF_AXE / AXE_PATH, apoi pachetul `axe-core` (npm i -D axe-core). Dacă lipsește: undefined (testele cu axe pică cu mesaj clar).
+import {createRequire as __fffCR} from 'node:module';
+const __fffAxe = () => { try { return __fffCR(import.meta.url).resolve('axe-core/axe.min.js'); } catch { return undefined; } };
+// [fff-portable] versiunea/data/kitul aplicației se citesc din app.json (nu mai sunt hard-codate în teste)
+import {readFileSync as __fffRF} from 'node:fs';
+const __FFF_APP = JSON.parse(__fffRF(new URL('../app.json', import.meta.url), 'utf8'));
+const __fffRe = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 import {createRequire} from "module"; import {fileURLToPath} from "url"; import path from "path"; import fs from "fs";
-const require=createRequire("/opt/node-tools/package.json"); const {chromium}=require("playwright");
+const require=createRequire(process.env.PW_ROOT || import.meta.url); const {chromium}=require("playwright");
 const here=path.dirname(fileURLToPath(import.meta.url)); const URL_='file://'+path.resolve(here,'../index.html');
-const AXE=process.env.FFF_AXE||'/tmp/claude-0/-home-claude/78529928-3825-51c3-b9bd-0e81655ab6bc/scratchpad/sweep/node_modules/axe-core/axe.min.js';
+const AXE=process.env.FFF_AXE||__fffAxe();
 let pass=0,fail=0; const ok=(c,m)=>{ if(c){pass++;} else {fail++; console.log('FAIL:',m);} };
-const browser=await chromium.launch({executablePath:"/opt/pw-browsers/chromium"});
+const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH || undefined});
 async function open(opts={}){
   const ctx=await browser.newContext({viewport:opts.vp||{width:1280,height:800},colorScheme:opts.scheme||'light',acceptDownloads:true,permissions:['clipboard-read','clipboard-write']});
   const reqs=[]; await ctx.route(/^https?:/, r=>{ reqs.push(r.request().url()); return r.abort(); });
@@ -29,8 +36,8 @@ const TXT='# Raport\n\nContact: ion.popescu@example.com\nIBAN: RO49AAAA1B3100759
 { const {ctx,p,errs,reqs}=await open();
   ok(errs.length===0,'pornire fără erori/CSP: '+errs.join(' | '));
   ok(reqs.length===0,'0 cereri de rețea la pornire');
-  ok(await p.evaluate(()=>document.querySelector('meta[name=application-version]').content==='1.2.10'),'versiune în meta');
-  ok((await p.textContent('#app-version')).includes('v 1.2.10 · 2026-10-26'),'text #app-version');
+  ok(await p.evaluate((__FFF_APP)=>document.querySelector('meta[name=application-version]').content===__FFF_APP.version, __FFF_APP),'versiune în meta');
+  ok((await p.textContent('#app-version')).includes(`v ${__FFF_APP.version} · ${__FFF_APP.updated}`),'text #app-version');
   ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'fără depășire orizontală 1280');
   await axe(p,'start');
   await p.click('#btnExport'); await p.waitForSelector('#scrimExport.show');

@@ -4,7 +4,7 @@ import {createRequire} from "module"; import {fileURLToPath} from "url"; import 
 const require=createRequire(process.env.NODE_PW||"/opt/node-tools/package.json"); const {chromium}=require("playwright");
 const here=path.dirname(fileURLToPath(import.meta.url));
 let pass=0,fail=0; const ok=(c,m,i)=>{ if(c){pass++;console.log('  ok   '+m);} else {fail++; console.log('FAIL:',m,i===undefined?'':JSON.stringify(i));} };
-const b=await chromium.launch({executablePath:process.env.CHROME||"/opt/pw-browsers/chromium",args:["--no-sandbox"]});
+const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH || process.env.CHROME || undefined,args:["--no-sandbox"]});
 const ctx=await b.newContext({serviceWorkers:'block'}); await ctx.route(/^https?:/,r=>r.abort());
 const p=await ctx.newPage(); const errs=[]; p.on('pageerror',e=>errs.push(String(e)));
 await p.goto('file://'+path.resolve(here,'../index.html')); await p.waitForTimeout(1200);
