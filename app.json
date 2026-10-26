@@ -14,8 +14,8 @@
   "storageKeys": [
     "markdownatelier.v1"
   ],
-  "sizeBytes": 384398,
-  "sha256": "97d5337a01e0cf07ac332629eb3c3c5568c043322968940701b5dddcee88f45e",
+  "sizeBytes": 384447,
+  "sha256": "c79469e954fd8032fdc313109cc5178e06bfafce899f03c42bfc92c5006e44db",
   "csp": {
     "present": true,
     "directives": {
