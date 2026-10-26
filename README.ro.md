@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.10 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,11 @@ Pași:
 Descarcă `index.html` și deschide-l în browser; nu necesită internet.
 
 ## Istoric / Changelog
+
+### 2.0.0 — 2026-10-26
+
+- **Versiuni ramificate** (butonul „Istoric”): salvezi versiuni ale documentului, creezi ramuri din textul curent, treci între ele, compari orice versiune cu textul curent (diferență pe cuvinte) și restaurezi. **Îmbinarea** unei ramuri în alta e în trei (bază comună, pe linii): modificările separate se combină, iar cele care se bat cap în cap apar cu marcaje `<<<<<<<` / `=======` / `>>>>>>>` de rezolvat. Totul stă local, în documentul din localStorage.
+- **Comentarii ancorate** pe fragmentul selectat: rămân în document, se regăsesc după editări (cu „↦” sari la fragment) și nu apar în exporturi. Interfața e tradusă în toate cele 8 limbi.
 
 ### 1.2.9 — 2026-10-23
 

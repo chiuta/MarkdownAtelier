@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.10 · **Last updated:** 2026-10-26
+**Version:** 2.0.0 · **Last updated:** 2026-10-26
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -76,6 +76,11 @@ Steps:
 Download `index.html` and open it in a browser; no internet required.
 
 ## History / Changelog
+
+### 2.0.0 — 2026-10-26
+
+- **Branching versions** (History button): save versions, branch from the current text, switch branches, compare any version with the current text (word diff) and restore. Merging is three-way (common base, line-based) with `<<<<<<<` conflict markers. Stored locally inside the document.
+- **Anchored comments** on the selected passage; they stay in the document and are not exported.
 
 ### 1.2.9 — 2026-10-23
 
