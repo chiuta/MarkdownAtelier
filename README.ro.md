@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
+**Versiune:** 2.2.0 · **Ultima actualizare:** 2026-10-27
 
 **Stare:** stabil · **Offline:** complet
 
@@ -29,7 +29,9 @@ MarkdownAtelier este un editor Markdown dintr-un singur fișier HTML, cu previzu
 - Export: .md, .html autoconținut, PDF (print), „Copiază HTML în clipboard"; panou de cuprins și ajutor cu sintaxa.
 - **Export Word `.docx` (2.1.0):** „↓ .docx” în panoul Export (trece și prin verificarea datelor personale). Generat în browser, fără bibliotecă: un mic scriitor ZIP (CRC-32) + WordprocessingML produs din același HTML ca previzualizarea. Păstrează titlurile (Heading 1-6, deci panoul de navigare din Word funcționează), îngroșat/italic/tăiat/marcat/indice/exponent, cod inline, linkuri, liste cu buline și numerotate (imbricate, fiecare `ol` reîncepe de la 1), liste de sarcini (☑/☐), citate, tabele (rând de antet, aliniere pe coloane), blocuri de cod (monospațiat, cu fundal), linii orizontale, note de subsol și blocuri pliabile (ca text simplu). **Limite:** imaginile devin textul lor alternativ între paranteze drepte; ecuațiile sunt scrise ca text liniar (`E=mc^2`, `(a)/(b)`), nu ca ecuații Word native; codul nu are colorare sintactică; linkurile interne (`#...`) devin text simplu; fișierul nu e comprimat (ZIP „stored”). **Verificat** cu pandoc și LibreOffice (se deschide și se convertește în PDF); **netestat cu Microsoft Word** - de verificat pe o instalare reală.
 - **Existente deja (fără modificări în 2.1.0):** *modul focus* (Setări → „Mod focus”) și *istoricul local al versiunilor* (ramuri, diferență pe cuvinte, îmbinare în 3 direcții; vezi 2.0.0).
-- **Planificat (neimplementat):** *diagrame Mermaid* (un randor corect e mult prea mare ca să fie adăugat fără dependență, iar o versiune de jucărie ar desena diagrame greșite; un bloc ```` ```mermaid ```` rămâne bloc de cod obișnuit) și *fișier PDF nativ* (exportul rămâne tipărirea din browser → „Salvează ca PDF”, care dă cea mai bună calitate a textului; un scriitor PDF făcut de mână nu merită riscul unei tipografii mai slabe).
+- **Diagrame Mermaid (2.2.0, subset compact):** un bloc ```` ```mermaid ```` cu `flowchart`/`graph` (TB/TD/BT/LR/RL, forme de noduri `[ ] ( ) ([ ]) (( )) { }`, săgeți `--> --- -.-> ==>` cu etichete, lanțuri, cicluri) sau `sequenceDiagram` (`participant`/`actor`, `->> -->> -> --> -x -)`, note, mesaje către sine) este desenat local ca SVG inline, cu culorile temei și tipărire corectă. Sintaxa nesuportată (`subgraph`, `style`/`classDef`, `loop`/`alt`, `activate`, `&`, alte tipuri de diagrame) sau depășirea limitelor (60 noduri, 120 conexiuni, 24 participanți, 150 evenimente) afișează un mesaj clar cu numărul liniei (8 limbi; fr/it/es/pt/de/hu sunt traduceri automate), iar sursa rămâne bloc de cod. Aranjarea este proprie și mai simplă decât cea din Mermaid oficial; nu este o implementare completă Mermaid.
+- **PDF prin tipărire (exista deja):** butonul „PDF” / Shift+P, foaie de stil pentru tipărire; exportul rămâne tipărirea din browser → „Salvează ca PDF”.
+- **Planificat (neimplementat):** alte tipuri Mermaid (class, state, ER, gantt, pie...), `subgraph` și stilizare, și *fișier PDF nativ* (un scriitor PDF făcut de mână nu merită riscul unei tipografii mai slabe).
 
 ## Funcții noi (1.1.0)
 
@@ -81,6 +83,9 @@ Pași:
 Descarcă `index.html` și deschide-l în browser; nu necesită internet.
 
 ## Istoric / Changelog
+
+### 2.2.0 — 2026-10-27
+- Subset Mermaid (flowchart/graph și sequenceDiagram) desenat local ca SVG, cu mesaj clar pentru sintaxă nesuportată; teste în `tests/mermaid.test.mjs` (30 de verificări). PDF-prin-tipărire exista deja și este acum documentat.
 
 ### 2.1.0 — 2026-10-27
 - Export nou în Word `.docx`, fără bibliotecă (scriitor ZIP + WordprocessingML), trecut și prin verificarea datelor personale; teste în `tests/docx.test.mjs` (45 de verificări; validat și cu pandoc și LibreOffice).
