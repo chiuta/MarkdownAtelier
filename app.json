@@ -2,7 +2,7 @@
   "schema": 1,
   "slug": "markdownatelier",
   "name": "MarkdownAtelier — atelier de scriere Markdown",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "updated": "2026-10-27",
   "description": "Editor Markdown autonom, single-file: preview live, ecuații LaTeX (MathML nativ), teme multiple, export PDF și HTML. Fără server, fără cont, fără rețea.",
   "egress": [],
@@ -14,8 +14,8 @@
   "storageKeys": [
     "markdownatelier.v1"
   ],
-  "sizeBytes": 428578,
-  "sha256": "bfbfc6f3d311445fbc012ee904f793d7da6de1c6fc08cbe679c4faa7ae0d21c8",
+  "sizeBytes": 453908,
+  "sha256": "6594854ac300b977c51588c6ab34fabfce451b572cff222c79338757a8e8d518",
   "csp": {
     "present": true,
     "directives": {
