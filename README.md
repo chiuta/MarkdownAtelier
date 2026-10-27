@@ -2,7 +2,9 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.0.0 · **Last updated:** 2026-10-26
+**Version:** 2.1.0 · **Last updated:** 2026-10-27
+
+**Status:** stable · **Offline:** complete
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -25,6 +27,9 @@ MarkdownAtelier is a Markdown editor in a single HTML file, with side-by-side pr
 - Documents: "Import .md", "＋ New document", a document list with search (in titles and text), "Backup .json" (all documents in one file) and "Restore" (adds the documents from a backup, without overwriting the existing ones).
 - On first run, with no saved settings, the application chooses the dark "midnight" theme if the system prefers it.
 - Export: .md, self-contained .html, PDF (print), "Copy HTML to clipboard"; table-of-contents panel and syntax help.
+- **Word export `.docx` (2.1.0):** "↓ .docx" in the Export panel (also covered by the personal-data check). Built in the browser with no library: a small ZIP writer (CRC-32) + WordprocessingML generated from the same HTML as the preview. Keeps headings (Heading 1-6, so Word's navigation pane works), bold/italic/strikethrough/highlight/sub/superscript, inline code, links, bullet and numbered lists (nested, each `ol` restarts at 1), checklists (☑/☐), quotes, tables (header row, column alignment), code blocks (monospace, shaded), horizontal rules, footnotes and collapsible blocks (as plain text). **Limits:** images become their alt text in square brackets; equations are written as linear text (`E=mc^2`, `(a)/(b)`), not as native Word equations; code is not syntax-colored; internal links (`#...`) become plain text; the file is not compressed (ZIP "stored"). **Verified** with pandoc and LibreOffice (opens and converts to PDF); **not tested with Microsoft Word** - to be checked on a real installation.
+- **Already present (no change in 2.1.0):** *focus mode* (Settings → "Focus mode") and *local version history* (branches, word diff, 3-way merge; see 2.0.0).
+- **Planned (not implemented):** *Mermaid diagrams* (a correct renderer is far too large to add without a dependency, and a toy version would draw wrong diagrams; a ```` ```mermaid ```` block stays a normal code block) and a *native PDF file* (the export remains the browser's print → "Save as PDF", which gives the best text quality; a hand-written PDF writer is not worth the risk of worse typography).
 
 ## New features (1.1.0)
 
@@ -76,6 +81,11 @@ Steps:
 Download `index.html` and open it in a browser; no internet required.
 
 ## History / Changelog
+
+### 2.1.0 — 2026-10-27
+- New export to Word `.docx` with no library (ZIP writer + WordprocessingML), also covered by the personal-data check; tests in `tests/docx.test.mjs` (45 checks; also validated with pandoc and LibreOffice).
+- Documented: focus mode and version history already exist; Mermaid and a native PDF file are marked as planned.
+- Texts in 8 languages (fr/it/es/pt/de/hu are automatic, not natively verified).
 
 ### 2.0.0 — 2026-10-26
 
