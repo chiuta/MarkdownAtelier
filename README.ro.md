@@ -2,7 +2,9 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
+
+**Stare:** stabil · **Offline:** complet
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -25,6 +27,9 @@ MarkdownAtelier este un editor Markdown dintr-un singur fișier HTML, cu previzu
 - Documente: „Importă .md", „＋ Document nou", listă de documente cu căutare (în titluri și text), „Backup .json" (toate documentele într-un fișier) și „Restaurează" (adaugă documentele dintr-un backup, fără a le suprascrie pe cele existente).
 - La prima rulare, fără setări salvate, aplicația alege tema întunecată „midnight" dacă sistemul o preferă.
 - Export: .md, .html autoconținut, PDF (print), „Copiază HTML în clipboard"; panou de cuprins și ajutor cu sintaxa.
+- **Export Word `.docx` (2.1.0):** „↓ .docx” în panoul Export (trece și prin verificarea datelor personale). Generat în browser, fără bibliotecă: un mic scriitor ZIP (CRC-32) + WordprocessingML produs din același HTML ca previzualizarea. Păstrează titlurile (Heading 1-6, deci panoul de navigare din Word funcționează), îngroșat/italic/tăiat/marcat/indice/exponent, cod inline, linkuri, liste cu buline și numerotate (imbricate, fiecare `ol` reîncepe de la 1), liste de sarcini (☑/☐), citate, tabele (rând de antet, aliniere pe coloane), blocuri de cod (monospațiat, cu fundal), linii orizontale, note de subsol și blocuri pliabile (ca text simplu). **Limite:** imaginile devin textul lor alternativ între paranteze drepte; ecuațiile sunt scrise ca text liniar (`E=mc^2`, `(a)/(b)`), nu ca ecuații Word native; codul nu are colorare sintactică; linkurile interne (`#...`) devin text simplu; fișierul nu e comprimat (ZIP „stored”). **Verificat** cu pandoc și LibreOffice (se deschide și se convertește în PDF); **netestat cu Microsoft Word** - de verificat pe o instalare reală.
+- **Existente deja (fără modificări în 2.1.0):** *modul focus* (Setări → „Mod focus”) și *istoricul local al versiunilor* (ramuri, diferență pe cuvinte, îmbinare în 3 direcții; vezi 2.0.0).
+- **Planificat (neimplementat):** *diagrame Mermaid* (un randor corect e mult prea mare ca să fie adăugat fără dependență, iar o versiune de jucărie ar desena diagrame greșite; un bloc ```` ```mermaid ```` rămâne bloc de cod obișnuit) și *fișier PDF nativ* (exportul rămâne tipărirea din browser → „Salvează ca PDF”, care dă cea mai bună calitate a textului; un scriitor PDF făcut de mână nu merită riscul unei tipografii mai slabe).
 
 ## Funcții noi (1.1.0)
 
@@ -76,6 +81,11 @@ Pași:
 Descarcă `index.html` și deschide-l în browser; nu necesită internet.
 
 ## Istoric / Changelog
+
+### 2.1.0 — 2026-10-27
+- Export nou în Word `.docx`, fără bibliotecă (scriitor ZIP + WordprocessingML), trecut și prin verificarea datelor personale; teste în `tests/docx.test.mjs` (45 de verificări; validat și cu pandoc și LibreOffice).
+- Documentat: modul focus și istoricul versiunilor există deja; Mermaid și fișierul PDF nativ sunt marcate ca planificate.
+- Texte în 8 limbi (fr/it/es/pt/de/hu sunt automate, neverificate de vorbitori nativi).
 
 ### 2.0.0 — 2026-10-26
 
