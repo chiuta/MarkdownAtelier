@@ -1,4 +1,4 @@
-// MarkdownAtelier 2.3.1 — subset Mermaid (flowchart/graph + sequenceDiagram) randat local în SVG; mesaj clar pentru sintaxă nesuportată.
+// MarkdownAtelier 2.3.2 — subset Mermaid (flowchart/graph + sequenceDiagram) randat local în SVG; mesaj clar pentru sintaxă nesuportată.
 // Rulează: node tests/mermaid.test.mjs
 import {createRequire} from "module"; import {fileURLToPath} from "url"; import path from "path";
 const require=createRequire(process.env.NODE_PW||"/opt/node-tools/package.json"); const {chromium}=require("playwright");
