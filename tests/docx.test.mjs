@@ -72,6 +72,7 @@ await p.fill('#editor',MD); await p.waitForTimeout(300);
 await p.click('#btnExport'); await p.waitForTimeout(200);
 const [dl]=await Promise.all([p.waitForEvent('download',{timeout:15000}),p.click('#expDocx')]);
 const file=path.join(tmp,'out.docx'); await dl.saveAs(file);
+{const tt=await p.textContent('#toast'); ok(/\.html/.test(tt)&&/docx/.test(tt),'notă după .docx: imagini/ecuații neincluse, .html le păstrează: '+tt);}
 const dn=await p.evaluate(()=>(window.__dl||[]).slice(-1)[0]); ok(/^.+\.docx$/.test(dn||''),'nume de fișier .docx: '+dn); // (suggestedFilename() din Playwright e «download» pentru blob: pe file://, ca la .md)
 if(process.env.KEEP)fs.copyFileSync(file,process.env.KEEP);
 const buf=fs.readFileSync(file);

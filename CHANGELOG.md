@@ -2,6 +2,11 @@
 
 Format: [SemVer](https://semver.org/lang/ro/) (MAJOR.MINOR.PATCH). Istoricul complet al versiunilor anterioare este în secțiunea „Istoric / Changelog” din [README.ro.md](README.ro.md).
 
+## 2.3.3 — 2026-11-08
+
+- Nou: la «↓ .docx» (și în descrierea din fereastra Export) se spune că imaginile și ecuațiile nu sunt incluse și că exportul .html le păstrează (8 limbi).
+- Corectat un comentariu înșelător din cod (autosalvarea la închidere nu afișează niciun dialog).
+
 ## 2.3.0 — 2026-11-02 (reîmprospătare kit)
 
 - Nou (kit): **Sincronizare între dispozitive** (`FFF.sync`) — în dialogul «Transparență» (clic pe versiune → Copie de siguranță): conectezi două dispozitive direct (WebRTC, cod/QR, fără server și fără cont) și își schimbă datele aplicației; cea mai recentă valoare câștigă, secretele (chei API, parole) nu se trimit, ștergerile nu se propagă. Aplicarea trece prin importul kitului (confirmare, chei permise, rollback).
