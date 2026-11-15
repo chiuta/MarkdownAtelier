@@ -9,13 +9,14 @@
   "permissions": [
     "clipboard",
     "serviceWorker",
-    "localStorage"
+    "localStorage",
+    "WebGL"
   ],
   "storageKeys": [
     "markdownatelier.v1"
   ],
-  "sizeBytes": 671921,
-  "sha256": "859ce7b7aea58986b2e52665d56bd15634b70c75ece42bd37065e0238b1a9c2f",
+  "sizeBytes": 723930,
+  "sha256": "a49e809b591099721da951faae3634d7924a75d7b1e8f318a23ea4d6e12bccf9",
   "csp": {
     "present": true,
     "directives": {
@@ -28,7 +29,7 @@
       "base-uri": "'self'",
       "form-action": "'self'",
       "worker-src": "'self' blob:",
-      "script-src": "'self' blob: sha256×4",
+      "script-src": "'self' blob: sha256×5",
       "connect-src": "'self'",
       "manifest-src": "'self'"
     },
